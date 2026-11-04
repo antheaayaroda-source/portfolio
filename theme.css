@@ -539,7 +539,7 @@ h2::after {
 #about.section { padding-top: clamp(2rem, 4vw, 3rem); }
 #about .about-grid {
   grid-template-columns: minmax(14rem, 0.4fr) minmax(0, 1.6fr);
-  column-gap: clamp(2rem, 5vw, 4rem);
+  column-gap: clamp(2.5rem, 5vw, 4rem);
   row-gap: 0.5rem;
   align-items: center;
 }
@@ -931,7 +931,7 @@ body { font-size: 1.125rem; line-height: 1.7; }
 .eyebrow { font-size: 0.78rem; }
 #home .hero-description { font-size: 1.15rem; }
 #home .hero-social > span { font-size: 0.72rem; }
-#about .about-copy { font-size: 1.125rem; }
+#about .about-copy { font-size: 1rem; }
 #skills .skill-list li { font-size: 0.95rem; }
 #skills .skill-subheading { font-size: 1.05rem; }
 #certifications .certificate-content p { font-size: 1rem; }
@@ -961,6 +961,27 @@ body { font-size: 1.125rem; line-height: 1.7; }
     width: 5rem;
     opacity: 0.4;
   }
+}
+
+@media (max-width: 768px) {
+  #home > .container,
+  #about > .container.about-grid,
+  #skills > .container,
+  #projects > .container,
+  #contact > .container {
+    padding-inline: clamp(1.25rem, 5vw, 1.5rem);
+    min-width: 0;
+  }
+  #about > .container.about-grid > .about-vase-sticker {
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: clamp(2.5rem, 10vw, 3rem);
+    opacity: 0.25;
+  }
+  #certifications > .container { padding-inline: 0; }
+  #certifications .section-heading { padding-inline: clamp(1.25rem, 5vw, 1.5rem); }
 }
 
 /* Gentle entrance and scroll-reveal motion, disabled for reduced-motion preferences. */
