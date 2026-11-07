@@ -1,307 +1,29 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Anthea Aya Roda's portfolio for documentation and report writing.">
-  <title>Anthea Aya Roda | Documentation &amp; Report Writing</title>
+  <meta name="description" content="Anthea Aya Roda is a BS Computer Science student who enjoys thoughtful design, documentation, and building useful digital experiences.">
+  <meta name="theme-color" content="#faf7f0">
+  <title>Anthea Aya Roda | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    document.documentElement.dataset.theme = savedTheme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  </script>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="theme.css?v=leaf-2">
-  <style id="leaf-decor">
-    /* Solid header: nothing shows through when scrolling */
-    .site-header { z-index: 1000; background: #faf7f0; -webkit-backdrop-filter: none; backdrop-filter: none; }
-    /* Contact buttons: 2x2 like before, all four the same size, no wrapping */
-    #contact .contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 2.7rem; gap: 0.65rem; }
-    #contact .contact-links .button { width: 100%; height: 2.7rem; min-height: 0; padding-block: 0; padding-inline: 0.7rem; gap: 0.35rem; font-size: 0.8rem; white-space: nowrap; overflow-wrap: normal; align-items: center; justify-content: flex-start; }
-    @media (min-width: 701px) { #contact .contact-content { grid-template-columns: minmax(0, 1fr) minmax(25rem, 1fr); } }
-    @media (max-width: 420px) { #contact .contact-links { grid-template-columns: minmax(0, 1fr); } }
-    /* Hero: bring the name and text a bit closer to the photo (desktop only) */
-    @media (min-width: 900px) { #home .hero-content { margin-left: clamp(0rem, 8vw, 7rem); } }
-    /* Faint leaves behind Skills, Certifications and Projects */
-    #skills, #certifications, #projects { position: relative; overflow: hidden; }
-    #skills > .container, #certifications > .container, #projects > .container { position: relative; z-index: 1; }
-    .bg-leaf { position: absolute; z-index: 0; color: #7d9270; pointer-events: none; }
-    .bg-r-top { top: 1rem; right: -1.5rem; width: clamp(7rem, 13vw, 11rem); opacity: 0.2; transform: rotate(-16deg); }
-    .bg-l-top { top: 1.5rem; left: -1.5rem; width: clamp(7rem, 12vw, 10rem); opacity: 0.2; transform: rotate(16deg) scaleX(-1); }
-    .bg-l-bottom { bottom: -1rem; left: -1.5rem; width: clamp(6rem, 11vw, 9rem); opacity: 0.16; filter: blur(2px); transform: rotate(20deg) scaleX(-1); }
-    .bg-r-bottom { bottom: -1rem; right: -1rem; width: clamp(6rem, 11vw, 9rem); opacity: 0.16; filter: blur(2px); transform: rotate(-20deg); }
-    @media (max-width: 600px) { .bg-leaf { width: 5rem; opacity: 0.14; } }
-    /* Hero leaves (self-contained: no theme.css edit needed) */
-    #home.hero { position: relative; }
-    #home .hero-layout { position: relative; z-index: 1; }
-    #home .hero-art { position: relative; width: min(100%, 26rem); justify-self: start; align-self: end; }
-    #home .hero-art .hero-photo-frame { width: 100%; }
-    #home .hero-blur { position: absolute; z-index: 2; color: #7d9270; pointer-events: none; filter: blur(5px); }
-    #home .hero-blur-a { top: 12%; right: -3rem; width: clamp(8rem, 16vw, 13rem); opacity: 0.38; transform: rotate(18deg); }
-    #home .hero-blur-b { right: 2%; bottom: -1rem; width: clamp(6rem, 11vw, 9rem); opacity: 0.28; filter: blur(7px); transform: rotate(-24deg); }
-    @media (min-width: 701px) {
-      #about .about-vase-sticker { width: clamp(9rem, 17vw, 14rem); opacity: 0.95; }
-      #contact .contact-leaf-sticker { width: clamp(7rem, 12vw, 11rem); opacity: 0.9; }
-    }
-    @media (max-width: 600px) {
-      #home .hero-art { width: min(100%, 22rem); justify-self: center; }
-      #home .hero-blur-b { display: none; }
-      #home .hero-blur-a { right: -2rem; width: 6rem; }
-    }
-    /* Copy of layout2: branch by the arch, willow blur leaves, vases */
-    #home .hero-blur-a { width: clamp(9rem, 17vw, 14rem); opacity: 0.45; }
-    #home .hero-blur-b { right: 12%; width: clamp(7rem, 12vw, 10rem); opacity: 0.4; }
-    #about .about-vase-sticker { bottom: 0; }
-    @media (min-width: 701px) { #about .about-grid { padding-left: clamp(0rem, 14vw, 12rem); } }
-    @media (max-width: 600px) { }
-    /* Faint leaves on the left, beside the name */
-    #home .hero-side { position: absolute; z-index: 0; color: #7d9270; pointer-events: none; }
-    #home .hero-side-a { top: 4.5rem; left: -1.5rem; width: clamp(6rem, 10vw, 9rem); opacity: 0.3; filter: blur(2px); transform: rotate(24deg); }
-    #home .hero-side-b { top: 12rem; left: 3vw; width: clamp(4rem, 6vw, 5.5rem); opacity: 0.22; filter: blur(3px); transform: rotate(-18deg) scaleX(-1); }
-    @media (max-width: 600px) { #home .hero-side-a { top: 2rem; width: 4.5rem; } #home .hero-side-b { display: none; } }
-    /* Projects: smaller cards (a bit smaller than Certifications) */
-    #projects .projects-grid { grid-template-columns: repeat(auto-fill, minmax(15rem, 22rem)); justify-content: start; }
-    #projects .project-screenshot { aspect-ratio: 16 / 9; overflow: hidden; }
-    #projects .project-screenshot-preview { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    #projects .project-content { padding-right: 3.5rem; }
-    #projects .project-content h3 { font-size: 1.15rem; }
-    #projects .project-description { font-size: 0.9rem; line-height: 1.6; }
-    #projects .project-detail { font-size: 0.88rem; }
-    #projects .project-card-empty .project-screenshot { background: #e4e8dc; }
-    #projects .project-card-empty::after { content: none; }
-    /* Hover animations (mouse devices only, off when reduced motion is on) */
-    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-      #skills .info-card, #certifications .certification-card, #projects .project-card, #contact .contact-links .button {
-        transition: opacity 650ms ease var(--motion-delay, 0ms), transform 750ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--motion-delay, 0ms), translate 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-      }
-      #skills .info-card:hover, #certifications .certification-card:hover, #projects .project-card:not(.project-card-empty):hover {
-        translate: 0 -6px; border-color: #d9b36a; box-shadow: 0 0.9rem 1.8rem rgb(65 90 61 / 16%);
-      }
-      #contact .contact-links .button:hover { translate: 0 -3px; box-shadow: 0 0.5rem 1rem rgb(65 90 61 / 14%); }
-      #certifications .certificate-image-link { overflow: hidden; }
-      #certifications .certificate-image-link img, #projects .project-screenshot-preview, #home .profile-photo { transition: transform 0.6s ease; }
-      #certifications .certification-card:hover .certificate-image-link img, #projects .project-card:hover .project-screenshot-preview { transform: scale(1.06); }
-      #home .hero-photo-frame:hover .profile-photo { transform: scale(1.03); }
-      #skills .skill-list li { transition: background-color 0.25s ease, color 0.25s ease, translate 0.25s ease; }
-      #skills .skill-list li:hover { color: #fff; background: #415a3d; translate: 0 -2px; }
-      .tools-list li { transition: color 0.25s ease, translate 0.25s ease; }
-      .tools-list li:hover { color: #e6c987; translate: 0 -2px; }
-    }
-    /* Concentric-circle intro and menu (inspired by the thonik video) */
-    html.intro-lock { overflow: hidden; }
-    .rings { --u: min(4.2rem, 12vmin); --c: 2.4rem; position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .ring { position: absolute; right: calc(var(--c) - var(--u) * var(--j)); bottom: calc(var(--c) - var(--u) * var(--j)); width: calc(var(--u) * var(--j) * 2); height: calc(var(--u) * var(--j) * 2); border-radius: 50%; }
-    .ring[style*="--j:7"] { background: #cfd9c4; } .ring[style*="--j:6"] { background: #415a3d; } .ring[style*="--j:5"] { background: #faf7f0; } .ring[style*="--j:4"] { background: #415a3d; }
-    .ring[style*="--j:3"] { background: #faf7f0; } .ring[style*="--j:2"] { background: #415a3d; } .ring[style*="--j:1"] { background: #faf7f0; }
-    .ring-btn { position: fixed; right: calc(2.4rem - 1.4rem); bottom: calc(2.4rem - 1.4rem); z-index: 1700; width: 2.8rem; height: 2.8rem; padding: 0; border: 2px solid #415a3d; border-radius: 50%; color: #faf7f0; background: radial-gradient(circle, #faf7f0 0 16%, #415a3d 16% 36%, #faf7f0 36% 56%, #415a3d 56%); cursor: pointer; box-shadow: 0 0.3rem 1rem rgb(38 53 42 / 25%); transition: transform 0.3s ease; }
-    .ring-btn:hover { transform: scale(1.12); }
-    /* Intro */
-    #intro { position: fixed; inset: 0; z-index: 2000; overflow: hidden; background: #faf7f0; cursor: pointer; transition: background-color 0s linear 1.15s; }
-    #intro.is-leaving { background-color: transparent; pointer-events: none; }
-    #intro .ring { animation: ring-in 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) calc(0.35s + var(--j) * 70ms) backwards, ring-wave 3.4s ease-in-out calc(2s + var(--j) * 140ms) infinite; }
-    #intro.is-leaving .ring { animation: none; transform: scale(0); transition: transform 0.7s cubic-bezier(0.7, 0, 0.3, 1) calc((7 - var(--j)) * 45ms); }
-    #intro .ring-btn { z-index: 2001; animation: intro-fade 0.8s ease 1.3s backwards; }
-    #intro.is-leaving .ring-btn, #intro.is-leaving .intro-small, #intro.is-leaving .intro-title, #intro.is-leaving .intro-hint { opacity: 0; transition: opacity 0.3s ease; }
-    .intro-small { position: absolute; left: clamp(1.25rem, 5vw, 4rem); top: clamp(1.25rem, 6vh, 3rem); margin: 0; color: #80530f; font: 600 0.78rem "Jost", sans-serif; letter-spacing: 0.2em; text-transform: uppercase; animation: intro-fade 0.7s ease 0.5s backwards; }
-    .intro-title { position: absolute; left: clamp(1.25rem, 5vw, 4rem); top: 50%; translate: 0 -62%; margin: 0; color: #26352a; font: 500 clamp(2.6rem, 8vw, 6.5rem) / 1.04 "Playfair Display", Georgia, serif; letter-spacing: -0.03em; }
-    .intro-title .line { display: block; overflow: hidden; padding-bottom: 0.1em; }
-    .intro-title .line > span { display: block; animation: intro-rise 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
-    .intro-title .line:nth-child(1) > span { animation-delay: 0.6s; } .intro-title .line:nth-child(2) > span { animation-delay: 0.75s; }
-    .intro-title em { color: #80530f; font-style: italic; }
-    .intro-hint { position: absolute; left: clamp(1.25rem, 5vw, 4rem); bottom: clamp(1.5rem, 6vh, 3rem); margin: 0; color: #415a3d; font: 500 0.95rem "Jost", sans-serif; letter-spacing: 0.06em; animation: intro-fade 0.8s ease 1.5s backwards; }
-    /* Striped circle sweep (like the red stripes in the video): covers the screen, then pulls back into the corner */
-    .intro-stripes { position: absolute; inset: 0; z-index: 2002; display: none; pointer-events: none; background: repeating-radial-gradient(circle at 50% 50%, #c0842a 0 1.1rem, #415a3d 1.1rem 2.2rem); clip-path: circle(0 at 50% 50%); }
-    #intro.is-leaving .intro-stripes { display: block; animation: stripes-sweep 2.3s linear 0.25s both; }
-    @keyframes stripes-sweep {
-      0% { clip-path: circle(0 at 50% 50%); animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1); }
-      45% { clip-path: circle(150vmax at 50% 50%); }
-      52% { clip-path: circle(150vmax at 50% 50%); animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1); }
-      100% { clip-path: circle(0 at 50% 50%); }
-    }
-    /* Welcome words sit on the rings, like the menu labels in the video */
-    #intro .rings { --u: min(5.4rem, 14vmin); }
-    .intro-word { position: absolute; right: calc(var(--c) - 6rem); bottom: calc(var(--c) + var(--u) * var(--k) - 0.8rem); width: 12rem; color: #26352a; font: italic 500 clamp(1.1rem, 2.8vmin, 1.8rem) / 1.2 "Playfair Display", Georgia, serif; text-align: center; animation: word-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) calc(1.1s + (7 - var(--k)) * 140ms) backwards; }
-    .intro-word[data-j="6"], .intro-word[data-j="4"] { color: #faf7f0; }
-    #intro.is-leaving .intro-word { opacity: 0; transition: opacity 0.3s ease; }
-    @keyframes word-in { from { opacity: 0; translate: 0 0.8rem; } }
-    /* Images that keep changing inside the circles while the visitor has not clicked yet */
-    #intro { --u: min(4.2rem, 12vmin); --c: 2.4rem; }
-    #intro .ring[style*="--j:1"], #intro .ring[style*="--j:2"], #intro .ring[style*="--j:3"] { display: none; }
-    .intro-gallery { position: absolute; right: calc(var(--c) - var(--u) * 3); bottom: calc(var(--c) - var(--u) * 3); width: calc(var(--u) * 6); height: calc(var(--u) * 6); overflow: hidden; border-radius: 50%; background: #cfd9c4; pointer-events: none; animation: intro-fade 0.8s ease 1.1s backwards; }
-    .intro-gallery i { position: absolute; inset: 0; background: center / cover no-repeat; opacity: 0; animation: gal-slide 16.8s linear infinite; }
-    .intro-gallery i:nth-child(1) { animation-delay: 1.70s; }
-    .intro-gallery i:nth-child(2) { animation-delay: 4.50s; }
-    .intro-gallery i:nth-child(3) { animation-delay: 7.30s; }
-    .intro-gallery i:nth-child(4) { animation-delay: 10.10s; }
-    .intro-gallery i:nth-child(5) { animation-delay: 12.90s; }
-    .intro-gallery i:nth-child(6) { animation-delay: 15.70s; }
-    .intro-flash { position: absolute; inset: 0; background: repeating-radial-gradient(circle at 50% 50%, #c0842a 0 0.55rem, #415a3d 0.55rem 1.1rem); clip-path: circle(0%); animation: gal-flash 8.4s cubic-bezier(0.7, 0, 0.3, 1) 1.2s infinite; }
-    #intro.is-leaving .intro-gallery { opacity: 0; transition: opacity 0.35s ease; }
-    @keyframes gal-slide { 0% { opacity: 1; } 16.8% { opacity: 1; } 16.9% { opacity: 0; } 100% { opacity: 0; } }
-    @keyframes gal-flash { 0% { clip-path: circle(0%); } 5% { clip-path: circle(75%); } 7.14% { clip-path: circle(75%); } 13.1% { clip-path: circle(0%); } 100% { clip-path: circle(0%); } }
-    @keyframes ring-wave { 50% { transform: scale(1.09); } }
-    /* Three different transitions, one after another (like the video): striped circle, sliding bars, falling blinds */
-    .intro-bars, .intro-blinds { position: absolute; inset: 0; display: flex; pointer-events: none; }
-    .intro-bars { flex-direction: column; }
-    .intro-bars span, .intro-blinds span { display: block; flex: 1; background: #415a3d; }
-    .intro-bars span:nth-child(even), .intro-blinds span:nth-child(even) { background: #c0842a; }
-    .intro-bars span { transform: translateX(-101%); animation: bars-run 8.4s cubic-bezier(0.7, 0, 0.3, 1) calc(4s + var(--i) * 0.03s) infinite; }
-    .intro-blinds span { transform: translateY(-101%); animation: blinds-run 8.4s cubic-bezier(0.7, 0, 0.3, 1) calc(6.8s + var(--i) * 0.03s) infinite; }
-    @keyframes bars-run { 0% { transform: translateX(-101%); } 3.57% { transform: translateX(0); } 7.14% { transform: translateX(0); } 13.1% { transform: translateX(101%); } 100% { transform: translateX(101%); } }
-    @keyframes blinds-run { 0% { transform: translateY(-101%); } 3.57% { transform: translateY(0); } 7.14% { transform: translateY(0); } 13.1% { transform: translateY(101%); } 100% { transform: translateY(101%); } }
-    @keyframes ring-in { from { transform: scale(0); } }
-    @keyframes intro-rise { from { transform: translateY(110%); } }
-    @keyframes intro-fade { from { opacity: 0; } }
-    /* The welcome screen always moves (one click skips it); the page content below still respects the reduced-motion setting */
-    @media (prefers-reduced-motion: reduce) {
-      html.site-enter .site-header, html.site-enter #home .hero-content > *, html.site-enter #home .hero-art, html.site-enter .hero-blur, html.site-enter .hero-side, html.site-enter #ring-toggle { animation: none; }
-    }
-    /* After the intro: entrance animations + navbar effects */
-    #progress { position: fixed; top: 0; left: 0; right: 0; z-index: 1100; height: 3px; background: #c0842a; transform: scaleX(0); transform-origin: left; pointer-events: none; }
-    .site-header { transition: translate 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
-    .site-header.nav-hidden { translate: 0 -100%; }
-    .nav-links a.is-active { color: #80530f; }
-    .nav-links a.is-active::after { right: 0; left: 0; }
-    @keyframes ui-rise { from { opacity: 0; translate: 0 2.2rem; } }
-    @keyframes ui-photo { from { clip-path: inset(100% 0 0 0); translate: 0 3rem; } }
-    @keyframes ui-fade { from { opacity: 0; } }
-    @keyframes sway { 50% { rotate: 5deg; } }
-    @media (prefers-reduced-motion: no-preference) {
-      .has-intro:not(.site-ready) .site-header { translate: 0 -100%; }
-      .has-intro:not(.site-ready) #home .hero-content > *, .has-intro:not(.site-ready) #home .hero-art { opacity: 0; }
-      .site-ready #home .hero-content > * { animation: ui-rise 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
-      .site-ready #home .hero-content > :nth-child(2) { animation-delay: 0.12s; }
-      .site-ready #home .hero-content > :nth-child(3) { animation-delay: 0.24s; }
-      .site-ready #home .hero-content > :nth-child(4) { animation-delay: 0.36s; }
-      .site-ready #home .hero-art { animation: ui-photo 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s backwards; }
-      #home .hero-blur-a, #home .hero-side-a { animation: sway 9s ease-in-out infinite; }
-      #home .hero-blur-b, #home .hero-side-b { animation: sway 11s ease-in-out infinite reverse; }
-      .site-ready #home .hero-blur-a, .site-ready #home .hero-side-a { animation: ui-fade 1.4s ease 0.8s backwards, sway 9s ease-in-out 2.2s infinite; }
-      .site-ready #home .hero-blur-b, .site-ready #home .hero-side-b { animation: ui-fade 1.4s ease 0.9s backwards, sway 11s ease-in-out 2.3s infinite reverse; }
-    }
-    /* After clicking "view insights": the page content animates in */
-    html.intro-lock:not(.site-enter) .site-header, html.intro-lock:not(.site-enter) #home .hero-content > *, html.intro-lock:not(.site-enter) #home .hero-art, html.intro-lock:not(.site-enter) #ring-toggle { opacity: 0; }
-    html.site-enter .site-header { animation: enter-down 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
-    html.site-enter #home .hero-content > * { animation: enter-up 1s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
-    html.site-enter #home .hero-content > :nth-child(2) { animation-delay: 0.14s; }
-    html.site-enter #home .hero-content > :nth-child(3) { animation-delay: 0.28s; }
-    html.site-enter #home .hero-content > :nth-child(4) { animation-delay: 0.42s; }
-    html.site-enter #home .hero-art { animation: enter-arch 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s backwards; }
-    html.site-enter .hero-blur, html.site-enter .hero-side { animation: intro-fade 1.6s ease 0.7s backwards; }
-    html.site-enter #ring-toggle { animation: enter-pop 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.9s backwards; }
-    @keyframes enter-down { from { opacity: 0; transform: translateY(-100%); } }
-    @keyframes enter-up { from { opacity: 0; transform: translateY(2.2rem); } }
-    @keyframes enter-arch { from { clip-path: inset(100% 0 0 0); transform: translateY(2rem); } to { clip-path: inset(0); } }
-    @keyframes enter-pop { from { opacity: 0; transform: scale(0); } }
-    /* Intro centered on the screen (rings, images, button and stripes all share the same center) */
-    #intro, #intro .rings { --u: min(5.4rem, 6vmin); --c: 50%; }
-    #intro .ring-btn { right: calc(50% - 1.4rem); bottom: calc(50% - 1.4rem); }
-    #intro .intro-hint { z-index: 3; left: 50%; translate: -50% 0; bottom: clamp(0.75rem, 2.5vh, 1.5rem); padding: 0.35rem 1rem; border-radius: 99px; background: #faf7f0; white-space: nowrap; }
-    /* Endless outward flow: every circle keeps growing into the size of the next ring (and takes its color),
-       a new circle is born in the center, and the loop restarts without any visible jump */
-    #intro { --start: 2s; --flow: 3s cubic-bezier(0.5, 0, 0.2, 1); }
-    @keyframes flow {
-      from { transform: scale(var(--f, 1)); }
-      to   { transform: scale(var(--e)); }
-    }
-    @keyframes flow-fade { from { opacity: 0; } to { opacity: 1; } }
-    /* the next ring's color fades in on top (opacity runs on the GPU; animating background-color repaints every frame) */
-    #intro .ring::after, #intro .intro-gallery::after, #intro .ring-btn .mini::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--cb); opacity: 0; pointer-events: none; animation: flow-fade var(--flow) var(--start) infinite; }
-    #intro .ring, #intro .intro-gallery, #intro .ring-btn .mini, #intro .intro-word { will-change: transform; }
-    /* Opening: freeze the flow so the exit animation has the whole frame budget (no lag, no pop) */
-    #intro.is-leaving .ring { animation: ring-in 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) calc(0.35s + var(--j) * 70ms) backwards, flow var(--flow) var(--start) infinite; animation-play-state: paused; transform: none; scale: 0; transition: scale 0.7s cubic-bezier(0.7, 0, 0.3, 1) calc((7 - var(--j)) * 45ms); }
-    #intro.is-leaving .ring::after, #intro.is-leaving .intro-gallery, #intro.is-leaving .intro-gallery::after, #intro.is-leaving .ring-btn .mini, #intro.is-leaving .ring-btn .mini::after, #intro.is-leaving .intro-word { animation-play-state: paused; }
-    #intro .intro-stripes { will-change: clip-path; }
-    #intro .ring { animation: ring-in 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) calc(0.35s + var(--j) * 70ms) backwards, flow var(--flow) var(--start) infinite; }
-    #intro .ring[style*="--j:2"] { display: block; z-index: 1; background: #cfd9c4; --e: 1.5;    --ca: #cfd9c4; --cb: #cfd9c4; }
-    #intro .ring[style*="--j:4"] { --e: 1.25;   --ca: #415a3d; --cb: #faf7f0; }
-    #intro .ring[style*="--j:5"] { --e: 1.2;    --ca: #faf7f0; --cb: #415a3d; }
-    #intro .ring[style*="--j:6"] { --e: 1.1667; --ca: #415a3d; --cb: #cfd9c4; }
-    #intro .ring[style*="--j:7"] { --e: 1.1429; --ca: #cfd9c4; --cb: #faf7f0; }
-    #intro .intro-gallery { --e: 1.3333; --ca: #cfd9c4; --cb: #415a3d; animation: intro-fade 0.8s ease 1.1s backwards, flow var(--flow) var(--start) infinite; }
-    /* Welcome words travel outward with their ring and fade at the loop point */
-    #intro .intro-word { z-index: 2; animation: word-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) calc(1.1s + (7 - var(--k)) * 140ms) backwards, word-flow var(--flow) var(--start) infinite; }
-    #intro .intro-word[data-j="7"] { --wa: #26352a; --wb: #26352a; }
-    #intro .intro-word[data-j="6"] { --wa: #faf7f0; --wb: #26352a; }
-    #intro .intro-word[data-j="5"] { --wa: #26352a; --wb: #faf7f0; }
-    #intro .intro-word[data-j="4"] { --wa: #faf7f0; --wb: #26352a; }
-    @keyframes word-flow {
-      0%   { transform: translateY(0); color: var(--wa); opacity: 0; }
-      12%  { opacity: 1; }
-      88%  { opacity: 1; }
-      100% { transform: translateY(calc(var(--u) * -1)); color: var(--wb); opacity: 0; }
-    }
-    /* The small center button is a mini version of the same flow */
-    #intro .ring-btn { background: #415a3d; overflow: hidden; animation: intro-fade 0.8s ease 1.3s backwards; }
-    #intro .ring-btn .mini { position: absolute; inset: 0; margin: auto; border-radius: 50%; pointer-events: none; animation: flow var(--flow) var(--start) infinite; }
-    #intro .ring-btn .mini[style*="--m:2"] { width: 56%; height: 56%; --e: 1.7857; --ca: #faf7f0; --cb: #415a3d; background: #faf7f0; }
-    #intro .ring-btn .mini[style*="--m:1"] { width: 36%; height: 36%; --e: 1.5556; --ca: #415a3d; --cb: #faf7f0; background: #415a3d; }
-    #intro .ring-btn .mini[style*="--m:0"] { width: 16%; height: 16%; --e: 2.25;   --ca: #faf7f0; --cb: #415a3d; background: #faf7f0; }
-    #intro .ring-btn .mini[style*="--m:3"] { width: 16%; height: 16%; --f: 0; --e: 1; --ca: #faf7f0; --cb: #faf7f0; background: #faf7f0; }
-  </style>
-  <noscript><style>#intro { display: none; }</style></noscript>
-<style id="marquee-css">
-  /* Certifications auto-scroll to the left (no sideways swiping needed) */
-  .marquee { position: relative; overflow: hidden !important; padding: 0.75rem 0 1.25rem; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%); }
-  .marquee-certs    { --card-w: min(22rem, 80vw);  --gap: 1.25rem; }
-  .marquee > .marquee-track { display: flex !important; flex-wrap: nowrap !important; align-items: stretch; width: max-content !important; max-width: none !important; margin: 0 !important; padding: 0 !important; gap: 0 !important; grid-template-columns: none !important; animation: marquee-run var(--dur, 40s) linear infinite !important; overflow: visible !important; scroll-snap-type: none !important; will-change: transform; }
-  .marquee > .marquee-track > * { flex: 0 0 auto !important; width: var(--card-w) !important; max-width: none !important; margin: 0 var(--gap) 0 0 !important; }
-  .marquee:hover > .marquee-track, .marquee:focus-within > .marquee-track { animation-play-state: paused !important; }
-  .marquee-track img { max-width: 100%; }
-  @keyframes marquee-run { to { transform: translateX(-50%); } }
-</style>
+  <link rel="stylesheet" href="theme.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div id="intro" role="dialog" aria-label="Welcome to my portfolio">
-    <p class="intro-small">Anthea Aya Roda</p>
-    <p class="intro-hint">Get to Know Me <span aria-hidden="true">&searr;</span></p>
-    <div class="intro-stripes" aria-hidden="true"></div>
-    <div class="rings"><i class="ring" style="--j:7"></i><i class="ring" style="--j:6"></i><i class="ring" style="--j:5"></i><i class="ring" style="--j:4"></i><i class="ring" style="--j:3"></i><i class="ring" style="--j:2"></i><i class="ring" style="--j:1"></i><span class="intro-word" style="--k:6.5" data-j="7">Welcome</span><span class="intro-word" style="--k:5.5" data-j="6">to</span><span class="intro-word" style="--k:4.5" data-j="5">my</span><span class="intro-word" style="--k:3.5" data-j="4">portfolio.</span></div>
-    <div class="intro-gallery" aria-hidden="true"></div>
-    <button class="ring-btn intro-enter" id="intro-enter" type="button" aria-label="Get to Know Me"><i class="mini" style="--m:2"></i><i class="mini" style="--m:1"></i><i class="mini" style="--m:0"></i><i class="mini" style="--m:3"></i></button>
-  </div>
-  <div id="progress" aria-hidden="true"></div>
-  <script>
-    (function () {
-      var h = document.documentElement, i = document.getElementById('intro');
-      var hd = document.querySelector('.site-header'), pg = document.getElementById('progress'), last = 0;
-      function onScroll() {
-        var y = window.scrollY, max = h.scrollHeight - window.innerHeight;
-        pg.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
-        if (y > 140 && y > last + 4) hd.classList.add('nav-hidden');
-        else if (y < last - 4 || y <= 140) hd.classList.remove('nav-hidden');
-        last = y;
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      var links = [].slice.call(document.querySelectorAll('.nav-links a'));
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id); }); });
-      }, { rootMargin: '-45% 0px -50% 0px' });
-      ['home', 'about', 'skills', 'certifications', 'projects', 'contact'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
-      if (!i || getComputedStyle(i).display === 'none') return;
-      h.classList.add('has-intro', 'intro-lock');
-      document.getElementById('intro-enter').focus({ preventScroll: true });
-      function go() {
-        if (i.classList.contains('is-leaving')) return;
-        i.classList.add('is-leaving');
-        setTimeout(function () { h.classList.add('site-enter'); }, 1500);
-        setTimeout(function () { h.classList.add('site-ready'); }, 1600);
-        setTimeout(function () { h.classList.remove('intro-lock'); i.remove(); }, 2700);
-      }
-      i.addEventListener('click', go);
-    })();
-  </script>
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-    <g id="lfA"><path d="M0 0C-13 -7 -14 -25 0 -34C14 -25 13 -7 0 0Z"/><path d="M0 -3V-26" stroke="#faf7f0" stroke-opacity=".5" stroke-width="1.1" fill="none"/></g>
-    <g id="lfB"><path d="M0 0C-17 -5 -18 -24 0 -29C18 -24 17 -5 0 0Z"/><path d="M0 -3V-23" stroke="#faf7f0" stroke-opacity=".5" stroke-width="1.1" fill="none"/></g>
-    <symbol id="leaf-branch" viewBox="0 0 120 260"><g fill="currentColor"><path d="M52 258C48 200 64 150 57 100C52 62 62 34 78 10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><g transform="translate(51 238) rotate(-62) scale(1.0)" opacity="1"><use href="#lfA"/></g><g transform="translate(52 224) rotate(60) scale(1.0)" opacity="0.82"><use href="#lfA"/></g><g transform="translate(54 204) rotate(-56) scale(1.1)" opacity="0.85"><use href="#lfA"/></g><g transform="translate(57 188) rotate(56) scale(1.1)" opacity="1"><use href="#lfA"/></g><g transform="translate(60 168) rotate(-52) scale(1.15)" opacity="1"><use href="#lfA"/></g><g transform="translate(61 150) rotate(54) scale(1.15)" opacity="0.82"><use href="#lfA"/></g><g transform="translate(59 128) rotate(-50) scale(1.1)" opacity="0.85"><use href="#lfA"/></g><g transform="translate(57 110) rotate(50) scale(1.1)" opacity="1"><use href="#lfA"/></g><g transform="translate(55 90) rotate(-46) scale(1.0)" opacity="1"><use href="#lfA"/></g><g transform="translate(58 74) rotate(48) scale(0.95)" opacity="0.82"><use href="#lfA"/></g><g transform="translate(65 54) rotate(-38) scale(0.9)" opacity="0.85"><use href="#lfA"/></g><g transform="translate(69 42) rotate(40) scale(0.85)" opacity="1"><use href="#lfA"/></g><g transform="translate(78 22) rotate(8) scale(0.8)" opacity="1"><use href="#lfA"/></g></g></symbol>
-    <symbol id="leaf-round" viewBox="0 0 120 260"><g fill="currentColor"><path d="M54 258C60 205 50 150 58 100C64 64 58 36 78 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><g transform="translate(53 240) rotate(58) scale(1.0)" opacity="0.85"><use href="#lfB"/></g><g transform="translate(52 226) rotate(-60) scale(1.05)" opacity="1"><use href="#lfB"/></g><g transform="translate(55 206) rotate(54) scale(1.1)" opacity="1"><use href="#lfB"/></g><g transform="translate(57 190) rotate(-56) scale(1.15)" opacity="0.82"><use href="#lfB"/></g><g transform="translate(60 170) rotate(52) scale(1.15)" opacity="0.85"><use href="#lfB"/></g><g transform="translate(61 152) rotate(-54) scale(1.2)" opacity="1"><use href="#lfB"/></g><g transform="translate(58 130) rotate(48) scale(1.15)" opacity="1"><use href="#lfB"/></g><g transform="translate(56 112) rotate(-50) scale(1.1)" opacity="0.82"><use href="#lfB"/></g><g transform="translate(55 92) rotate(46) scale(1.05)" opacity="0.85"><use href="#lfB"/></g><g transform="translate(58 76) rotate(-46) scale(1.0)" opacity="1"><use href="#lfB"/></g><g transform="translate(65 56) rotate(38) scale(0.9)" opacity="1"><use href="#lfB"/></g><g transform="translate(69 44) rotate(-40) scale(0.85)" opacity="0.82"><use href="#lfB"/></g><g transform="translate(78 24) rotate(-8) scale(0.8)" opacity="1"><use href="#lfB"/></g></g></symbol>
-  <g id="lfW"><path d="M0 0C-8 -12 -8 -38 0 -56C8 -38 8 -12 0 0Z"/></g>
-    <symbol id="leaf-willow" viewBox="0 0 120 260"><g fill="currentColor"><path d="M55 258C50 190 66 120 58 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><g transform="translate(56 236) rotate(-44) scale(1)"><use href="#lfW"/></g><g transform="translate(57 214) rotate(42) scale(1)"><use href="#lfW"/></g><g transform="translate(59 190) rotate(-42) scale(1.1)"><use href="#lfW"/></g><g transform="translate(61 166) rotate(40) scale(1.1)"><use href="#lfW"/></g><g transform="translate(61 140) rotate(-40) scale(1.1)"><use href="#lfW"/></g><g transform="translate(60 114) rotate(38) scale(1)"><use href="#lfW"/></g><g transform="translate(58 88) rotate(-36) scale(0.95)"><use href="#lfW"/></g><g transform="translate(58 62) rotate(34) scale(0.85)"><use href="#lfW"/></g><g transform="translate(60 34) rotate(6) scale(0.8)"><use href="#lfW"/></g></g></symbol>
-  </defs></svg>
-
   <header class="site-header">
     <nav class="navigation container" aria-label="Main navigation">
-      <a class="brand" href="#home">AAR<span>.</span></a>
-      <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation" hidden>&#9776;</button>
+      <a class="brand" href="#home" aria-label="Anthea Aya Roda, home">AAR<span>.</span></a>
+      <button class="menu-toggle icon-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-navigation">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
       <ul class="nav-links" id="primary-navigation">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -310,203 +32,191 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <button class="theme-toggle icon-button" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg>
+      </button>
     </nav>
   </header>
 
   <main>
     <section class="hero section" id="home">
-      <svg class="hero-blur hero-blur-a" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-willow"/></svg>
-      <svg class="hero-blur hero-blur-b" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-willow"/></svg>
-      <svg class="hero-side hero-side-a" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-round"/></svg>
-      <svg class="hero-side hero-side-b" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-branch"/></svg>
       <div class="container hero-layout">
         <div class="hero-content">
-          <p class="eyebrow">Personal Portfolio</p>
+          <p class="eyebrow">BS Computer Science student</p>
           <h1>Hi, I&rsquo;m <span>Anthea Aya Roda.</span></h1>
-          <p class="hero-description">Documentation &amp; Report Writing</p>
+          <p class="hero-description">I bring care to the details and curiosity to every <strong>idea I build.</strong></p>
           <div class="hero-actions">
-            <a class="button button-solid" href="#projects">View My Work</a>
-            <a class="button hero-button-secondary" href="#contact">Contact Me</a>
+            <a class="button button-solid" href="#projects">Explore my work</a>
+            <a class="button button-outline" href="#contact">Let&rsquo;s connect</a>
+            <a class="button button-resume" href="files/Resume_Aya_updated.pdf" target="_blank" rel="noopener noreferrer">View my resume <span aria-hidden="true">&nearr;</span></a>
           </div>
         </div>
         <div class="hero-art">
+          <svg class="hero-leaves hero-leaves-left" viewBox="0 0 150 280" aria-hidden="true">
+            <path d="M80 274C67 203 82 125 71 12"/>
+            <path d="M75 241C35 236 28 207 35 191c26 4 43 23 40 50Zm-2-2c-8-20-20-34-34-42"/>
+            <path d="M78 207c38-4 49-31 45-49-25 6-43 23-45 49Zm0-2c8-19 21-32 37-41"/>
+            <path d="M76 167c-37-4-48-29-43-47 24 5 41 22 43 47Zm-1-2c-8-17-20-30-35-38"/>
+            <path d="M75 128c34-5 43-29 37-45-22 6-37 21-37 45Zm0-2c7-16 18-28 31-37"/>
+            <path d="M73 87c-30-5-39-26-33-41 19 5 32 19 33 41Zm0-2c-6-14-16-25-28-33"/>
+            <path d="M72 48c25-4 32-21 27-35-15 4-26 16-27 35Z"/>
+          </svg>
           <div class="hero-photo-frame">
-            <img class="profile-photo" src="images/profile-cutout.png" alt="Half-body portrait of Anthea Aya Roda in a black blazer, smiling with arms crossed" width="408" height="612">
+            <img class="profile-photo" src="images/profile-cutout.png" alt="Anthea Aya Roda smiling in a black blazer" width="408" height="612">
           </div>
+          <svg class="hero-leaves hero-leaves-right" viewBox="0 0 150 280" aria-hidden="true">
+            <path d="M80 274C67 203 82 125 71 12"/>
+            <path d="M75 241C35 236 28 207 35 191c26 4 43 23 40 50Zm-2-2c-8-20-20-34-34-42"/>
+            <path d="M78 207c38-4 49-31 45-49-25 6-43 23-45 49Zm0-2c8-19 21-32 37-41"/>
+            <path d="M76 167c-37-4-48-29-43-47 24 5 41 22 43 47Zm-1-2c-8-17-20-30-35-38"/>
+            <path d="M75 128c34-5 43-29 37-45-22 6-37 21-37 45Zm0-2c7-16 18-28 31-37"/>
+            <path d="M73 87c-30-5-39-26-33-41 19 5 32 19 33 41Zm0-2c-6-14-16-25-28-33"/>
+            <path d="M72 48c25-4 32-21 27-35-15 4-26 16-27 35Z"/>
+          </svg>
         </div>
       </div>
     </section>
 
-    <section class="section section-muted" id="about">
+    <section class="section about-section" id="about">
       <div class="container about-grid">
-        <svg class="about-vase-sticker" aria-hidden="true" viewBox="0 0 200 260" fill="none">
-          <use href="#leaf-branch" x="52" y="-2" width="72" height="156" style="color:#7d9270"/>
-          <rect x="22" y="244" width="156" height="14" rx="3" fill="#e2d6c0"/><rect x="34" y="230" width="132" height="14" rx="3" fill="#efe6d4"/>
-          <rect x="85" y="144" width="14" height="16" rx="3" fill="#e6d9c3"/>
-          <path fill-rule="evenodd" d="M92 154a44 44 0 1 1 0 88a44 44 0 1 1 0-88ZM92 176a22 22 0 1 0 0 44a22 22 0 1 0 0-44Z" fill="#e8dcc7"/>
-          <ellipse cx="150" cy="224" rx="14" ry="6" fill="#f3ecdd"/><rect x="136" y="214" width="28" height="10" rx="4" fill="#f3ecdd"/>
-        </svg>
         <div class="about-heading">
-          <p class="eyebrow">Get to know me</p>
-          <h2>About Me</h2>
+          <p class="eyebrow">A little about me</p>
+          <h2>Thoughtful work, made with purpose.</h2>
         </div>
         <div class="about-copy">
-          <p>I am Anthea Aya Roda, a BS Computer Science student with a strong passion for documentation and detail-oriented work. I'm hardworking and reliable, especially when preparing papers, reports, and other documents, ensuring they are clear, accurate, and well-structured.</p>
-          <p>I also have basic skills in designing and basic programming using Java, and I regularly attend orientations and seminars to keep learning. I'm looking for an opportunity where I can contribute, learn from others, and grow.</p>
+          <p>I&rsquo;m a <strong>BS Computer Science student</strong> who loves turning scattered thoughts into clear, useful work. Whether I&rsquo;m shaping a document, exploring a design, or learning a new tool, I bring patience, curiosity, and an eye for the small details.</p>
+          <p>I&rsquo;m still growing my craft—and that&rsquo;s part of what I enjoy. I show up ready to learn, contribute, and make each project a little better than the last.</p>
         </div>
+        <svg class="about-leaf" viewBox="0 0 120 240" aria-hidden="true"><path d="M61 235C53 172 72 92 59 8"/><path d="M59 190c-31-5-40-26-34-42 20 4 33 19 34 42Zm0-2c-7-15-17-26-29-34"/><path d="M64 151c32-5 42-27 36-43-21 6-35 20-36 43Zm0-2c7-16 18-28 31-36"/><path d="M60 108c-28-4-36-24-30-39 18 5 29 18 30 39Zm0-2c-6-14-15-24-26-31"/><path d="M60 65c24-5 32-23 27-37-16 5-27 17-27 37Zm0-2c5-13 14-23 24-30"/></svg>
       </div>
     </section>
 
-    <section class="section" id="skills">
-      <svg class="bg-leaf bg-r-top" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-branch"/></svg>
-      <svg class="bg-leaf bg-l-bottom" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-round"/></svg>
+    <section class="section skills-section" id="skills">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">My capabilities</p>
-          <h2>Skills</h2>
-          <p>Skills I bring to detail-oriented work and collaborative teams.</p>
+          <h2>Skills in practice</h2>
+          <p>Careful communication, creative thinking, and a growing technical toolkit.</p>
         </div>
         <div class="skills-grid">
           <article class="info-card">
-            <h3>Core Skills</h3>
+            <p class="card-kicker">How I work</p>
+            <h3>Clear, considered, dependable.</h3>
             <ul class="skill-list">
-              <li>Documentation &amp; Report Writing</li>
-              <li>Research &amp; Information Gathering</li>
-              <li>Proofreading &amp; Document Formatting</li>
-              <li>Organization &amp; Attention to Detail</li>
-              <li>Time Management &amp; Meeting Deadlines</li>
+              <li>Basic Graphic Design</li>
+              <li>Research &amp; information gathering</li>
+              <li>Proofreading &amp; document formatting</li>
+              <li>Attention to detail</li>
+            </ul>
+          </article>
+          <article class="info-card technical-card">
+            <p class="card-kicker">What I use</p>
+            <h3>Technical toolkit</h3>
+            <p class="technical-copy">Learning by making with familiar design and development tools.</p>
+            <ul class="tool-logos" aria-label="Tools and technologies">
+              <li><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer" aria-label="Figma" data-tooltip="Figma"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="" loading="lazy"></a></li>
+              <li><a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer" aria-label="Canva" data-tooltip="Canva"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg" alt="" loading="lazy"></a></li>
+              <li><a href="https://github.com/antheayaroda" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tooltip="GitHub"><img src="https://cdn.simpleicons.org/github/181717" alt="" loading="lazy"></a></li>
+              <li><a href="https://www.microsoft.com/microsoft-365/word" target="_blank" rel="noopener noreferrer" aria-label="Microsoft Word" data-tooltip="Word"><svg class="word-logo" viewBox="0 0 40 40" aria-hidden="true"><rect x="11" y="5" width="24" height="30" rx="3" fill="#2b579a"/><path d="M17 11h13v3H17zm0 6h13v3H17zm0 6h9v3h-9z" fill="#fff"/><path d="M4 10h17v20H4z" fill="#185abd"/><path d="m7 15 2.2 10h2.5l1.8-6 1.8 6h2.5L20 15h-2.7l-1.1 6-1.8-6h-1.8l-1.8 6-1.1-6Z" fill="#fff"/></svg></a></li>
+              <li><a href="https://www.microsoft.com/microsoft-365/excel" target="_blank" rel="noopener noreferrer" aria-label="Microsoft Excel" data-tooltip="Excel"><svg class="excel-logo" viewBox="0 0 40 40" aria-hidden="true"><rect x="11" y="5" width="24" height="30" rx="3" fill="#217346"/><path d="M17 11h13v3H17zm0 6h13v3H17zm0 6h9v3h-9z" fill="#fff"/><path d="M4 10h17v20H4z" fill="#185c37"/><path d="m8 15 2.6 4-2.6 6h2.8l1.4-3.5 1.6 3.5h2.8l-2.7-6 2.6-4h-2.8l-1.4 3-1.4-3Z" fill="#fff"/></svg></a></li>
+              <li><a href="https://play.google.com/store/search?q=Jvdroid&amp;c=apps" target="_blank" rel="noopener noreferrer" aria-label="Jvdroid" data-tooltip="Jvdroid"><svg class="jvdroid-logo" viewBox="0 0 48 48" aria-hidden="true"><path d="m9 8 8 8M39 8l-8 8" fill="none" stroke="#3ddc84" stroke-linecap="round" stroke-width="3"/><path d="M8 23a16 16 0 0 1 32 0H8Z" fill="#3ddc84"/><circle cx="18" cy="18" r="1.5" fill="#173c2b"/><circle cx="30" cy="18" r="1.5" fill="#173c2b"/><path d="M10 25h28v13a3 3 0 0 1-3 3H13a3 3 0 0 1-3-3V25Zm-5 1h3v11H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Zm35 0h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3V26ZM17 41h4v4h-4zm10 0h4v4h-4z" fill="#3ddc84"/><path d="m19 30 4 4-4 4m6 0h5" fill="none" stroke="#173c2b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a></li>
+              <li><a href="https://workspace.google.com/" target="_blank" rel="noopener noreferrer" aria-label="Google Docs" data-tooltip="Google Docs"><img src="https://cdn.simpleicons.org/googledocs/4285F4" alt="" loading="lazy"></a></li>
             </ul>
           </article>
           <article class="info-card">
-            <h3>Technical Skills</h3>
+            <p class="card-kicker">How I work with others</p>
+            <h3>Soft skills</h3>
             <ul class="skill-list">
-              <li>Basic Designing (Canva/Figma)</li>
-              <li>Basic Programming (using Java)</li>
-              <li>Microsoft Office (Word, PowerPoint, Excel)</li>
-              <li>Google Workspace (Docs, Sheets, Slides)</li>
-            </ul>
-          </article>
-          <article class="info-card">
-            <h3>Soft Skills</h3>
-            <ul class="skill-list">
-              <li>Hardworking and Reliable</li>
-              <li>Willing to Learn</li>
-              <li>Teamwork and Communication</li>
+              <li>Hardworking &amp; reliable</li>
+              <li>Willing to learn</li>
+              <li>Teamwork</li>
+              <li>Communication</li>
+              <li>Time management</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="tools-band" aria-label="Tools">
-      <div class="container">
-        <h2 class="tools-label">Tools</h2>
-        <ul class="tools-list">
-          <li>Canva</li>
-          <li>Figma</li>
-          <li>Java</li>
-          <li>Word</li>
-          <li>PowerPoint</li>
-          <li>Excel</li>
-          <li>Google Workspace</li>
-        </ul>
+    <section class="section certifications-section" id="certifications">
+      <div class="container section-heading">
+        <p class="eyebrow">Always learning</p>
+        <h2>Learning beyond class</h2>
+        <p>Each course adds a new perspective to the way I work.</p>
       </div>
-    </section>
-
-    <section class="section section-muted" id="certifications">
-      <svg class="bg-leaf bg-r-bottom" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-branch"/></svg>
-      <svg class="bg-leaf bg-l-top" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-round"/></svg>
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Learning beyond the classroom</p>
-          <h2>Certifications</h2>
-          <p>Courses and credentials I&rsquo;ve completed.</p>
-        </div>
-        <div class="certifications-grid">
+      <div class="certification-marquee" aria-label="Certifications and courses">
+        <div class="certifications-track">
           <article class="certification-card">
-            <a class="certificate-image-link" href="images/Certificate_of_Completion.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Certificate of Completion in a new tab">
-              <img src="images/Certificate_of_Completion.jpg" alt="Certificate of Completion for Introduction to AI Literacy and Responsible Use, issued to Anthea Aya Roda">
+            <a class="certificate-image-link" href="images/Certificate_of_Completion.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open AI Literacy and Responsible Use certificate">
+              <img src="images/Certificate_of_Completion.jpg" alt="Certificate for Introduction to AI Literacy and Responsible Use" loading="lazy">
             </a>
-            <div class="certificate-content">
-              <h3>Introduction to AI Literacy and Responsible Use</h3>
-              <p><strong>Organizer:</strong> Map&uacute;a University in collaboration with Arizona State University</p>
-              <p><strong>Date:</strong> 14 September 2026</p>
-            </div>
+            <div class="certificate-content"><h3>AI Literacy &amp; Responsible Use</h3><p>Map&uacute;a University &amp; Arizona State University</p><p class="certificate-date">September 2026</p></div>
           </article>
           <article class="certification-card">
-            <a class="certificate-image-link" href="images/networking-basics-certificate.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Networking Basics certificate in a new tab">
-              <img src="images/networking-basics-certificate.jpg" alt="Networking Basics certificate issued to Anthea Aya Roda by Cisco Networking Academy">
+            <a class="certificate-image-link" href="images/networking-basics-certificate.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Networking Basics certificate">
+              <img src="images/networking-basics-certificate.jpg" alt="Cisco Networking Academy Networking Basics certificate" loading="lazy">
             </a>
-            <div class="certificate-content">
-              <h3>Networking Basics</h3>
-              <p><strong>Organizer:</strong> Cisco Networking Academy</p>
-              <p><strong>Date:</strong> 18 May 2026</p>
-            </div>
+            <div class="certificate-content"><h3>Networking Basics</h3><p>Cisco Networking Academy</p><p class="certificate-date">May 2026</p></div>
           </article>
           <article class="certification-card">
-            <a class="certificate-image-link" href="images/E-certificate.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Thesis Preparation seminar certificate in a new tab">
-              <img src="images/E-certificate.jpg" alt="Certificate of Completion for the Thesis Preparation seminar by Bicol University Graduate School">
+            <a class="certificate-image-link" href="images/E-certificate.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Thesis Preparation certificate">
+              <img src="images/E-certificate.jpg" alt="Bicol University Graduate School Thesis Preparation certificate" loading="lazy">
             </a>
-            <div class="certificate-content">
-              <h3>Thesis Preparation with the Use of Trending Tools and Innovative Practices</h3>
-              <p><strong>Organizer:</strong> Bicol University Graduate School</p>
-              <p><strong>Date:</strong> 6&ndash;7 October 2025</p>
-            </div>
+            <div class="certificate-content"><h3>Thesis Preparation</h3><p>Bicol University Graduate School</p><p class="certificate-date">October 2025</p></div>
           </article>
           <article class="certification-card">
-            <a class="certificate-image-link" href="images/ms-excel-certificate.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Introduction to MS Excel certificate in a new tab">
-              <img src="images/ms-excel-certificate.jpg" alt="Declaration of Completion for Introduction to MS Excel, issued to Anthea Aya Roda by Simplilearn SkillUP, powered by Microsoft">
+            <a class="certificate-image-link" href="images/ms-excel-certificate.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open Introduction to MS Excel certificate">
+              <img src="images/ms-excel-certificate.jpg" alt="Simplilearn SkillUP Introduction to MS Excel certificate" loading="lazy">
             </a>
-            <div class="certificate-content">
-              <h3>Introduction to MS Excel</h3>
-              <p><strong>Organizer:</strong> Simplilearn SkillUP (Powered by Microsoft)</p>
-              <p><strong>Date:</strong> 27 October 2026</p>
-            </div>
+            <div class="certificate-content"><h3>Introduction to MS Excel</h3><p>Simplilearn SkillUP</p><p class="certificate-date">October 2026</p></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projects">
-      <svg class="bg-leaf bg-r-top" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-round"/></svg>
-      <svg class="bg-leaf bg-l-bottom" viewBox="0 0 120 260" aria-hidden="true"><use href="#leaf-branch"/></svg>
+    <section class="section projects-section" id="projects">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Things I&rsquo;ve made</p>
-          <h2>Projects</h2>
-          <p>A selection of projects and the skills I used to create them.</p>
+          <p class="eyebrow">Selected work</p>
+          <h2>Ideas taking shape</h2>
+          <p>Small steps in design, development, and thoughtful problem-solving.</p>
         </div>
         <div class="projects-grid">
-          <article class="project-card project-card-clickable" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Voting System project details and swipe through screenshots" data-project-pdf="files/Voting-System-Screenshots.pdf" data-project-images="images/voting-system-screen-2.jpg,images/voting-system-screen-1.jpg,images/voting-system-screen-3.jpg">
-            <div class="project-screenshot">
-              <img class="project-screenshot-preview" src="images/voting-system-screen-2.jpg" alt="Admin dashboard of the Voting System showing statistics overview" loading="lazy">
-            </div>
+          <article class="project-card">
+            <a class="project-image-link" href="images/voting-system-screen-2.jpg" target="_blank" rel="noopener noreferrer" aria-label="View Voting System dashboard screenshot">
+              <img src="images/voting-system-screen-2.jpg" alt="Voting System admin dashboard with election statistics" loading="lazy">
+            </a>
             <div class="project-content">
-              <p class="project-type">Project 01</p>
+              <p class="project-type">Web application</p>
               <h3>Voting System</h3>
-              <p class="project-description">I built a simple web-based voting system for Libertad National High School that lets students log in with their Student ID and cast one vote per election. It replaces manual paper ballots with a faster, more organized process, and gives admins a dashboard to manage candidates, parties, voters, and vote counts. It prevents double voting by tracking each voter's status.</p>
-              <p class="project-detail"><strong>Role:</strong> Developer (backend and frontend)</p>
-              <p class="project-detail"><strong>Tools:</strong> Python, Django, HTML, CSS, JavaScript</p>
+              <p>A web-based election tool designed to make voting more organized for Libertad National High School. I worked across the interface and backend, including voter status and administration features.</p>
+              <p class="project-role"><strong>My role:</strong> Frontend and backend developer.</p>
+              <p class="project-detail"><strong>Built with:</strong> Python, Django, HTML, CSS, JavaScript</p>
             </div>
           </article>
-          <article class="project-card project-card-clickable project-card-market" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Naval Public Market Price Monitoring System details and screenshots" data-project-images="images/figma-dashboard.jpg,images/figma2.jpg">
-            <div class="project-screenshot">
-              <img class="project-screenshot-preview" src="images/figma-dashboard.jpg" alt="Figma mock-up of the Naval Public Market price monitoring admin dashboard" loading="lazy">
-            </div>
+          <article class="project-card">
+            <a class="project-image-link" href="images/figma-dashboard.jpg" target="_blank" rel="noopener noreferrer" aria-label="View market price monitoring dashboard design">
+              <img src="images/figma-dashboard.jpg" alt="Figma dashboard concept for public market price monitoring" loading="lazy">
+            </a>
             <div class="project-content">
-              <p class="project-type">Project 02</p>
-              <h3>Naval Public Market Price Monitoring System</h3>
-              <p class="project-description">A web-based price monitoring system for the Naval Public Market that lets vendors submit daily commodity prices and gives admins a dashboard to track price trends, vendor updates, and product categories. This project covers the system's UI mock-up and thesis documentation.</p>
-              <p class="project-detail"><strong>Role:</strong> Designer and Documentation</p>
-              <p class="project-detail"><strong>Tools:</strong> Figma, Microsoft Word</p>
-              <p class="project-detail"><a href="https://embed.figma.com/proto/J2jZ0QYXdoENAIJgDTllfq/Untitled?node-id=1309-4222&amp;scaling=contain&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;embed-host=share" target="_blank" rel="noopener noreferrer">View Figma prototype</a></p>
+              <p class="project-type">Interface concept</p>
+              <h3>Market Price Monitor</h3>
+              <p>A Figma concept for tracking daily commodity prices, vendor updates, and product categories at Naval Public Market.</p>
+              <p class="project-role"><strong>My role:</strong> Interface design and documentation.</p>
+              <p class="project-detail"><strong>Focused on:</strong> Figma concept for a market price monitoring system.</p>
+              <a class="text-link" href="https://embed.figma.com/proto/J2jZ0QYXdoENAIJgDTllfq/Untitled?node-id=1309-4222&amp;scaling=contain&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;embed-host=share" target="_blank" rel="noopener noreferrer">Explore the Figma prototype <span aria-hidden="true">&rarr;</span></a>
             </div>
           </article>
-          <article class="project-card project-card-empty" aria-label="Project 03 (coming soon)">
-            <div class="project-screenshot"></div>
+          <article class="project-card project-card-thesis">
+            <a class="project-image-link" href="https://pulmocare-pi.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit the PulmoCare thesis web app">
+              <img src="images/thesis.PNG" alt="PulmoCare thesis web app homepage screenshot" loading="lazy">
+            </a>
             <div class="project-content">
-              <p class="project-type">Project 03</p>
-              <h3>Coming Soon</h3>
+              <p class="project-type">Thesis web app</p>
+              <h3>PulmoCare</h3>
+              <p>Our thesis web app helps people review respiratory symptoms and explore possible next steps.</p>
+              <p class="project-role"><strong>My role:</strong> Manuscript writing and project documentation.</p>
+              <a class="text-link" href="https://pulmocare-pi.vercel.app/" target="_blank" rel="noopener noreferrer">Visit the PulmoCare web app <span aria-hidden="true">&rarr;</span></a>
             </div>
           </article>
         </div>
@@ -515,92 +225,40 @@
 
     <section class="section contact-section" id="contact">
       <div class="container contact-content">
-        <p class="eyebrow">Reach out</p>
-        <h2>Let&rsquo;s connect</h2>
-        <p>I&rsquo;m looking for an opportunity to contribute, learn from others, and grow. Feel free to get in touch.</p>
+        <div class="contact-copy">
+          <p class="eyebrow">Have a project in mind?</p>
+          <h2>Let&rsquo;s make something meaningful.</h2>
+          <p>I&rsquo;m open to learning opportunities and thoughtful collaborations. Reach out—I&rsquo;d love to hear what you&rsquo;re working on.</p>
+        </div>
         <div class="contact-links">
-          <a class="button button-secondary" href="mailto:antheayaroda@gmail.com"><svg class="contact-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>antheayaroda@gmail.com</a>
-          <a class="button button-secondary" href="tel:09095854134"><span class="contact-icon" aria-hidden="true">&#9742;</span>09095854134</a>
-          <a class="button button-secondary" href="https://www.facebook.com/urtheqq" target="_blank" rel="noopener noreferrer"><svg class="contact-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2v2.2H7.5V13h2.7v8h3.2Z"/></svg>Aya Roda</a>
-          <a class="button button-secondary" href="https://www.instagram.com/ur_theqq/" target="_blank" rel="noopener noreferrer"><svg class="contact-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.7" r="1.1" fill="currentColor"/></svg>ur_theqq</a>
+          <a class="button contact-button" href="mailto:antheayaroda@gmail.com">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg><span>Email me</span>
+          </a>
+          <a class="button contact-button" href="tel:09095854134">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3H4a1 1 0 0 0-1 1 17 17 0 0 0 17 17 1 1 0 0 0 1-1v-3l-5-2-2 2a14 14 0 0 1-8-8l2-2-1-4Z"/></svg><span>Call me</span>
+          </a>
+          <a class="button contact-button" href="https://www.linkedin.com/in/anthea-aya-roda-5b1b0a442?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" rel="noopener noreferrer">
+            <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6ZM3.7 9h3v11h-3V9Zm5 0h2.9v1.5h.1c.4-.8 1.4-1.8 3-1.8 3.2 0 3.8 2.1 3.8 4.8V20h-3v-5.8c0-1.4 0-3.1-1.9-3.1s-2.1 1.5-2.1 3V20h-3V9Z"/></svg><span>LinkedIn</span>
+          </a>
+          <a class="button contact-button" href="https://github.com/antheayaroda" target="_blank" rel="noopener noreferrer">
+            <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.7a9.3 9.3 0 0 0-2.9 18.1c.5.1.6-.2.6-.4v-1.6c-2.4.5-2.9-1-2.9-1-.4-1-.9-1.2-.9-1.2-.8-.5.1-.5.1-.5.9.1 1.4.9 1.4.9.8 1.4 2.1 1 2.6.8.1-.6.3-1 .6-1.2-1.9-.2-3.9-1-3.9-4.2 0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.3 0 0 .7-.2 2.4.9a8.3 8.3 0 0 1 4.4 0c1.7-1.1 2.4-.9 2.4-.9.5 1.2.2 2.1.1 2.3.6.6.9 1.4.9 2.3 0 3.2-2 4-3.9 4.2.3.3.6.8.6 1.6v2.2c0 .2.2.5.7.4A9.3 9.3 0 0 0 12 2.7Z"/></svg><span>GitHub</span>
+          </a>
+          <a class="button contact-button" href="https://www.facebook.com/urtheqq" target="_blank" rel="noopener noreferrer">
+            <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2v2.1H7.5V13h2.7v8h3.3Z"/></svg><span>Facebook</span>
+          </a>
+          <a class="button contact-button" href="https://www.instagram.com/ur_theqq/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="icon-fill" cx="17.5" cy="6.5" r="1"/></svg><span>Instagram</span>
+          </a>
         </div>
       </div>
-      <svg class="contact-leaf-sticker" aria-hidden="true" viewBox="0 0 160 200" fill="none">
-        <circle cx="70" cy="150" r="64" stroke="#d9b36a" stroke-width="1.2" opacity=".6"/>
-        <rect x="64" y="52" width="5" height="62" rx="2" fill="#d4a24a" transform="rotate(-8 66 114)"/><rect x="82" y="40" width="5" height="74" rx="2" fill="#c0842a" transform="rotate(6 84 114)"/><rect x="98" y="58" width="5" height="56" rx="2" fill="#e0b867" transform="rotate(14 100 114)"/>
-        <path d="M46 112h72l-6 70H52l-6-70Z" fill="#b9c4ab"/><path d="M58 112l3 70M70 112v70M82 112v70M94 112v70M106 112l-3 70" stroke="#a3b093" stroke-width="1.5"/>
-        <rect x="30" y="182" width="104" height="14" rx="3" fill="#efe6d4"/>
-      </svg>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-bottom">
-      <p>&copy; 2026 Anthea Aya Roda &middot; Built with HTML, CSS &amp; JavaScript</p>
-      <a href="#home">Back to top &uarr;</a>
+    <div class="container footer-content">
+      <p>&copy; <span id="current-year">2026</span> Anthea Aya Roda</p>
+      <a href="#home">Back to top <span aria-hidden="true">&uarr;</span></a>
     </div>
   </footer>
-
-  <!-- Full-screen certificate preview and its accessible controls. -->
-  <div class="certificate-lightbox" id="certificate-lightbox" role="dialog" aria-modal="true" aria-label="Certificate preview" aria-hidden="true" hidden>
-    <div class="lightbox-toolbar">
-      <button class="lightbox-button" type="button" id="lightbox-close" aria-label="Close" title="Close">&#10005;</button>
-      <button class="lightbox-button" type="button" id="lightbox-zoom-out" aria-label="Zoom out" title="Zoom out">&minus;</button>
-      <button class="lightbox-button" type="button" id="lightbox-zoom-in" aria-label="Zoom in" title="Zoom in">+</button>
-    </div>
-    <div class="lightbox-stage" id="lightbox-stage"></div>
-  </div>
-
-  <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" aria-hidden="true" hidden>
-    <div class="project-modal-dialog" tabindex="-1">
-      <button class="project-modal-close" id="project-modal-close" type="button" aria-label="Close project details">&#10005;</button>
-      <h2 id="project-modal-title"></h2>
-      <div class="project-carousel" aria-label="Project screenshots">
-        <div class="project-carousel-frame">
-          <button class="project-carousel-arrow project-carousel-previous" id="project-carousel-previous" type="button" aria-label="Previous screenshot">&lsaquo;</button>
-          <img class="project-carousel-image" id="project-carousel-image" alt="" role="button" tabindex="0" aria-label="Open screenshot in full view">
-          <span class="project-carousel-error" id="project-carousel-error" hidden></span>
-          <button class="project-carousel-arrow project-carousel-next" id="project-carousel-next" type="button" aria-label="Next screenshot">&rsaquo;</button>
-        </div>
-        <div class="project-carousel-dots" id="project-carousel-dots" aria-label="Choose screenshot"></div>
-      </div>
-      <div class="project-modal-content" id="project-modal-content"></div>
-      <a class="project-modal-pdf" id="project-modal-pdf" target="_blank" rel="noopener noreferrer" hidden>View all screenshots (PDF)</a>
-    </div>
-  </div>
-
-  <script>
-    /* Build the endless certifications row. Runs before script.js so the duplicated cards get the same click behavior. */
-    (function () {
-      var rows = [['.certifications-grid', 'marquee-certs']];
-      var tracks = [];
-      rows.forEach(function (r) {
-        var grid = document.querySelector(r[0]);
-        if (!grid) return;
-        var wrap = document.createElement('div');
-        wrap.className = 'marquee ' + r[1];
-        grid.parentNode.insertBefore(wrap, grid);
-        wrap.appendChild(grid);
-        grid.classList.add('marquee-track');
-        Array.prototype.slice.call(grid.children).forEach(function (card) {
-          var copy = card.cloneNode(true);
-          copy.setAttribute('aria-hidden', 'true');
-          copy.setAttribute('data-marquee-clone', '');
-          if (copy.hasAttribute('tabindex')) copy.setAttribute('tabindex', '-1');
-          Array.prototype.slice.call(copy.querySelectorAll('a, button, [tabindex]')).forEach(function (el) { el.setAttribute('tabindex', '-1'); });
-          grid.appendChild(copy);
-        });
-        tracks.push(grid);
-      });
-      /* Same slow, steady pace (about 35px per second) for every row */
-      function setPace() {
-        tracks.forEach(function (t) { t.style.setProperty('--dur', Math.max(20, (t.offsetWidth / 2) / 35) + 's'); });
-      }
-      setPace();
-      window.addEventListener('load', setPace);
-      window.addEventListener('resize', setPace);
-    })();
-  </script>
-  <script src="script.js?v=motion-2" defer></script>
 </body>
 </html>
