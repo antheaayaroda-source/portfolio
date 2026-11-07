@@ -45,11 +45,15 @@
         <div class="hero-content">
           <p class="eyebrow">BS Computer Science student</p>
           <h1>Hi, I&rsquo;m <span>Anthea Aya Roda.</span></h1>
-          <p class="hero-description">I bring care to the details and curiosity to every <strong>idea I build.</strong></p>
+          <p class="hero-description" aria-label="I bring care to the details and curiosity to every idea I build.">
+            <span class="typing-prefix" aria-hidden="true"></span><strong class="typing-emphasis" aria-hidden="true"></strong>
+            <span class="visually-hidden">I bring care to the details and curiosity to every idea I build.</span>
+            <noscript>I bring care to the details and curiosity to every <strong>idea I build.</strong></noscript>
+          </p>
           <div class="hero-actions">
             <a class="button button-solid" href="#projects">Explore my work</a>
             <a class="button button-outline" href="#contact">Let&rsquo;s connect</a>
-            <a class="button button-resume" href="files/Resume_Aya_updated.pdf" target="_blank" rel="noopener noreferrer">View my resume <span aria-hidden="true">&nearr;</span></a>
+            <a class="button button-resume" href="images/resume.png" aria-haspopup="dialog">View my resume <span aria-hidden="true">&nearr;</span></a>
           </div>
         </div>
         <div class="hero-art">
@@ -260,5 +264,44 @@
       <a href="#home">Back to top <span aria-hidden="true">&uarr;</span></a>
     </div>
   </footer>
+
+  <aside class="floating-contact" aria-label="Quick message">
+    <section class="message-card" id="message-card" aria-labelledby="message-title" hidden>
+      <div class="message-card-header">
+        <div>
+          <p class="eyebrow">I&rsquo;d love to hear from you</p>
+          <h2 id="message-title">Send me a message</h2>
+        </div>
+        <button class="message-close" type="button" aria-label="Close message form">&times;</button>
+      </div>
+      <form class="message-form">
+        <label for="sender-name">Your name</label>
+        <input id="sender-name" name="name" autocomplete="name" placeholder="How should I address you?">
+        <label for="sender-email">Your email</label>
+        <input id="sender-email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+        <label for="sender-message">Message</label>
+        <textarea id="sender-message" name="message" rows="4" required placeholder="What would you like to talk about?"></textarea>
+        <button class="button button-solid message-send" type="submit">
+          <span>Send message</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13"/></svg>
+        </button>
+        <p class="message-note">Your email app will open with your message ready to send.</p>
+      </form>
+    </section>
+    <button class="message-toggle" type="button" aria-expanded="false" aria-controls="message-card">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg>
+      <span>Message me</span>
+    </button>
+  </aside>
+
+  <dialog class="resume-dialog" id="resume-dialog" aria-labelledby="resume-dialog-title">
+    <div class="resume-card">
+      <div class="resume-card-header">
+        <h2 id="resume-dialog-title">My Resume</h2>
+        <button class="resume-close" type="button" aria-label="Close resume preview">&times;</button>
+      </div>
+      <img class="resume-preview" src="images/resume.png" alt="Resume of Anthea Aya Roda">
+    </div>
+  </dialog>
 </body>
 </html>

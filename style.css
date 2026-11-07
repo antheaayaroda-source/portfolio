@@ -215,6 +215,35 @@ h1 span {
   font-weight: 600;
 }
 
+.hero-description .typing-prefix,
+.hero-description .typing-emphasis {
+  display: inline;
+}
+
+.hero-description .typing-prefix.is-typing,
+.hero-description .typing-emphasis.is-typing {
+  padding-right: 0.06em;
+}
+
+.hero-description .is-typing {
+  border-right: 2px solid var(--color-accent);
+  animation: typing-caret 650ms steps(1, end) infinite;
+}
+
+@keyframes typing-caret {
+  50% { border-color: transparent; }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -831,6 +860,236 @@ h1 span {
   color: var(--color-accent);
 }
 
+.floating-contact {
+  position: fixed;
+  z-index: 30;
+  right: max(1.25rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  display: grid;
+  justify-items: end;
+  gap: 0.75rem;
+}
+
+.message-toggle {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  color: var(--color-button-text);
+  background: var(--color-heading);
+  box-shadow: 0 0.5rem 1.5rem var(--color-shadow);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.message-toggle:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.message-toggle svg,
+.message-send svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.message-card[hidden] {
+  display: none;
+}
+
+.message-card {
+  width: min(22rem, calc(100vw - 2rem));
+  max-height: min(38rem, calc(100dvh - 7rem));
+  overflow-y: auto;
+  padding: 1.2rem;
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  color: var(--color-ink);
+  background: var(--color-card);
+  box-shadow: 0 0.75rem 2.5rem var(--color-shadow);
+  animation: message-card-in 180ms ease-out both;
+}
+
+@keyframes message-card-in {
+  from { opacity: 0; transform: translateY(0.5rem) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.message-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.message-card-header .eyebrow {
+  margin-bottom: 0.35rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+}
+
+.message-card-header h2 {
+  margin: 0;
+  color: var(--color-heading);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.message-close {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  color: var(--color-heading);
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.message-form {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.message-form label {
+  margin-top: 0.3rem;
+  color: var(--color-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.message-form input,
+.message-form textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0.55rem;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+.message-form textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.message-form input::placeholder,
+.message-form textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 0.75;
+}
+
+.message-send {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.45rem;
+  border-color: var(--color-heading);
+  color: var(--color-button-text);
+  background: var(--color-heading);
+}
+
+.message-send:hover {
+  color: var(--color-button-text);
+  background: var(--color-accent);
+}
+
+.message-note {
+  margin: 0.1rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.resume-dialog {
+  width: min(94vw, 58rem);
+  max-width: none;
+  max-height: 92dvh;
+  padding: 0;
+  overflow: visible;
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  color: var(--color-ink);
+  background: var(--color-card);
+  box-shadow: 0 1.25rem 4rem var(--color-shadow);
+}
+
+.resume-dialog::backdrop {
+  background: rgb(16 24 19 / 72%);
+  -webkit-backdrop-filter: blur(0.25rem);
+  backdrop-filter: blur(0.25rem);
+}
+
+.resume-card {
+  display: flex;
+  max-height: 92dvh;
+  flex-direction: column;
+}
+
+.resume-card-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.resume-card-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.resume-close {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  color: var(--color-heading);
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.resume-close:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.resume-preview {
+  width: 100%;
+  max-height: calc(92dvh - 4.2rem);
+  object-fit: contain;
+  object-position: top center;
+  background: var(--color-card);
+}
+
 :focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 3px;
@@ -995,6 +1254,11 @@ h1 span {
     padding-inline: 0.6rem;
     font-size: 0.82rem;
   }
+
+  .floating-contact {
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1014,5 +1278,9 @@ h1 span {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .hero-description .is-typing {
+    animation: none;
   }
 }
