@@ -785,6 +785,8 @@ h1 span {
   align-items: stretch;
   gap: 0;
   will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   animation: certifications-scroll var(--marquee-duration, 42s) linear infinite;
 }
 
