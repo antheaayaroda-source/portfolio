@@ -5,16 +5,17 @@ html[data-theme="light"] {
   --color-ink: #435044;
   --color-muted: #687365;
   --color-heading: #344a39;
-  --color-paper: #faf7f0;
-  --color-soft: #edefe4;
-  --color-card: #fffdf8;
-  --color-logo-tile: #fffdf8;
+  --color-paper: #edf1e4;
+  --color-soft: #e4ebda;
+  --color-matcha: #dfe8d2;
+  --color-card: #f8f6ed;
+  --color-logo-tile: #f8f6ed;
   --color-line: #e2ddcf;
   --color-sage: #cfd9c4;
   --color-leaf: #738a6d;
   --color-accent: #93651d;
-  --color-header: #faf7f0;
-  --color-button-text: #fffdf8;
+  --color-header: #edf1e4;
+  --color-button-text: #f8f6ed;
   --color-footer: #344a39;
   --color-footer-ink: #f3eddf;
   --color-footer-link: #e6c987;
@@ -30,6 +31,7 @@ html[data-theme="dark"] {
   --color-heading: #f0eadc;
   --color-paper: #202a25;
   --color-soft: #29362f;
+  --color-matcha: #26372e;
   --color-card: #303d35;
   --color-logo-tile: #f5f2e9;
   --color-line: #46564a;
@@ -77,7 +79,33 @@ body {
 .about-section,
 .certifications-section,
 .contact-section {
-  background: var(--color-soft);
+  background:
+    radial-gradient(ellipse at 86% 16%, color-mix(in srgb, var(--color-sage) 48%, transparent), transparent 34%),
+    radial-gradient(ellipse at 8% 92%, color-mix(in srgb, var(--color-leaf) 10%, transparent), transparent 38%),
+    var(--color-soft);
+}
+
+.skills-section {
+  background:
+    radial-gradient(ellipse at 78% 12%, color-mix(in srgb, var(--color-sage) 48%, transparent), transparent 37%),
+    radial-gradient(ellipse at 18% 82%, color-mix(in srgb, var(--color-leaf) 10%, transparent), transparent 40%),
+    var(--color-matcha);
+}
+
+.projects-section {
+  background:
+    radial-gradient(ellipse at 12% 14%, color-mix(in srgb, var(--color-sage) 46%, transparent), transparent 36%),
+    radial-gradient(ellipse at 88% 90%, color-mix(in srgb, var(--color-accent) 7%, transparent), transparent 38%),
+    var(--color-matcha);
+}
+
+.site-footer {
+  background: var(--color-footer);
+}
+
+.section-botanical,
+.contact-vase {
+  color: var(--color-leaf);
 }
 
 .info-card,
@@ -96,6 +124,28 @@ body {
 
 html[data-theme="dark"] .tool-logos a[aria-label="GitHub"] img {
   filter: invert(1);
+}
+
+html[data-theme="dark"] .hero-leaves {
+  color: #b7c8aa;
+  filter: blur(1px) drop-shadow(0 0 0.6rem rgb(183 200 170 / 28%));
+  opacity: 0.88;
+}
+
+html[data-theme="dark"] .about-leaf {
+  color: #b7c8aa;
+  filter: drop-shadow(0 0 0.5rem rgb(183 200 170 / 24%));
+  opacity: 0.4;
+}
+
+html[data-theme="dark"] .section-botanical,
+html[data-theme="dark"] .contact-vase {
+  color: #b7c8aa;
+  opacity: 0.28;
+}
+
+html[data-theme="dark"] .contact-vase .vase-fill {
+  fill: #b7c8aa;
 }
 
 @media (hover: hover) and (pointer: fine) {

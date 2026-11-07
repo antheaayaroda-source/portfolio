@@ -15,12 +15,21 @@
   </script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="theme.css">
+  <style>
+  /* Header na walang logo: menu sa kanan */
+  .navigation { justify-content: flex-end !important; }
+
+  /* Hero: ilagay ang text sa taas, hindi naka-center sa gitna ng photo */
+  .hero-layout { align-items: flex-start !important; min-height: 0 !important; }
+  .hero-content { align-self: flex-start !important; margin-top: 0 !important; padding-top: 2rem !important; }
+  .hero-content .eyebrow { margin-top: 0 !important; }
+</style>
+
   <script src="script.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <nav class="navigation container" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Anthea Aya Roda, home">AAR<span>.</span></a>
       <button class="menu-toggle icon-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-navigation">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -83,6 +92,10 @@
     </section>
 
     <section class="section about-section" id="about">
+      <svg class="section-botanical about-botanical" viewBox="0 0 180 280" aria-hidden="true">
+        <path d="M80 270C83 215 96 165 116 118c13-31 20-65 19-101"/>
+        <path class="leaf-fill" d="M91 221c-29-2-45-19-43-40 24 2 41 16 43 40Zm12-37c27-3 41-20 36-39-22 4-36 18-36 39Zm-1-45c-25-5-37-22-31-39 21 5 33 19 31 39Zm24-36c23-7 32-24 24-39-18 7-28 21-24 39ZM75 174c-18-8-28-22-22-33m47 2c16-13 25-27 31-42m-70 37c-14-14-20-29-17-40m58-4c12-17 16-33 12-45"/>
+      </svg>
       <div class="container about-grid">
         <div class="about-heading">
           <p class="eyebrow">A little about me</p>
@@ -97,6 +110,10 @@
     </section>
 
     <section class="section skills-section" id="skills">
+      <svg class="section-botanical skills-botanical" viewBox="0 0 180 280" aria-hidden="true">
+        <path d="M80 270C83 215 96 165 116 118c13-31 20-65 19-101"/>
+        <path class="leaf-fill" d="M91 221c-29-2-45-19-43-40 24 2 41 16 43 40Zm12-37c27-3 41-20 36-39-22 4-36 18-36 39Zm-1-45c-25-5-37-22-31-39 21 5 33 19 31 39Zm24-36c23-7 32-24 24-39-18 7-28 21-24 39ZM75 174c-18-8-28-22-22-33m47 2c16-13 25-27 31-42m-70 37c-14-14-20-29-17-40m58-4c12-17 16-33 12-45"/>
+      </svg>
       <div class="container">
         <div class="section-heading">
           <h2>Skills in practice</h2>
@@ -143,6 +160,10 @@
     </section>
 
     <section class="section certifications-section" id="certifications">
+      <svg class="section-botanical certifications-botanical" viewBox="0 0 180 280" aria-hidden="true">
+        <path d="M80 270C83 215 96 165 116 118c13-31 20-65 19-101"/>
+        <path class="leaf-fill" d="M91 221c-29-2-45-19-43-40 24 2 41 16 43 40Zm12-37c27-3 41-20 36-39-22 4-36 18-36 39Zm-1-45c-25-5-37-22-31-39 21 5 33 19 31 39Zm24-36c23-7 32-24 24-39-18 7-28 21-24 39ZM75 174c-18-8-28-22-22-33m47 2c16-13 25-27 31-42m-70 37c-14-14-20-29-17-40m58-4c12-17 16-33 12-45"/>
+      </svg>
       <div class="container section-heading">
         <p class="eyebrow">Always learning</p>
         <h2>Learning beyond class</h2>
@@ -179,6 +200,10 @@
     </section>
 
     <section class="section projects-section" id="projects">
+      <svg class="section-botanical projects-botanical" viewBox="0 0 180 280" aria-hidden="true">
+        <path d="M80 270C83 215 96 165 116 118c13-31 20-65 19-101"/>
+        <path class="leaf-fill" d="M91 221c-29-2-45-19-43-40 24 2 41 16 43 40Zm12-37c27-3 41-20 36-39-22 4-36 18-36 39Zm-1-45c-25-5-37-22-31-39 21 5 33 19 31 39Zm24-36c23-7 32-24 24-39-18 7-28 21-24 39ZM75 174c-18-8-28-22-22-33m47 2c16-13 25-27 31-42m-70 37c-14-14-20-29-17-40m58-4c12-17 16-33 12-45"/>
+      </svg>
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Selected work</p>
@@ -228,6 +253,14 @@
     </section>
 
     <section class="section contact-section" id="contact">
+      <svg class="contact-vase" viewBox="0 0 240 320" aria-hidden="true">
+        <g class="vase-branches">
+          <path d="M120 226c-5-57-4-115 0-202m0 167c-27-32-51-60-83-86m86 101c26-38 49-71 87-101m-87 60c-24-25-42-49-56-79m55 68c14-34 29-62 48-86"/>
+          <path class="leaf-fill" d="M43 118c-21-3-31-17-28-32 17 2 28 13 28 32Zm31 31c-19 2-31-8-32-23 16-2 29 6 32 23Zm-8-61C48 76 43 61 51 49c14 8 20 21 15 39Zm-14-26C39 52 35 38 43 28c12 8 16 19 9 34Zm104 80c21-4 30-19 26-34-17 3-27 15-26 34Zm-28 42c19 0 30-12 29-27-17 0-29 10-29 27Zm33-98c19-9 24-24 17-37-15 8-21 22-17 37Zm19-32c17-10 21-25 13-37-14 9-18 22-13 37Z"/>
+        </g>
+        <path class="vase-fill" d="M88 225h64l-7 19 12 55c2 9-5 17-14 17H97c-9 0-16-8-14-17l12-55-7-19Z"/>
+        <path d="M88 225h64m-49 19h34m-39 53h44"/>
+      </svg>
       <div class="container contact-content">
         <div class="contact-copy">
           <p class="eyebrow">Have a project in mind?</p>
