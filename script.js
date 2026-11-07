@@ -146,12 +146,15 @@
     track.append(originalGroup, duplicateGroup);
 
     const setMarqueePace = () => {
-      track.style.setProperty("--marquee-duration", `${Math.max(20, track.scrollWidth / 2 / 35)}s`);
+      track.style.setProperty("--marquee-duration", `${Math.max(20, track.scrollWidth / 2 / 50)}s`);
     };
 
     setMarqueePace();
     window.addEventListener("resize", setMarqueePace);
     motionPreference.addEventListener("change", setMarqueePace);
+    track.querySelectorAll("img").forEach((image) => {
+      image.addEventListener("load", setMarqueePace, { once: true });
+    });
   }
 
   const year = document.getElementById("current-year");
