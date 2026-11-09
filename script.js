@@ -91,23 +91,33 @@
   const projectLightbox = document.getElementById("project-lightbox");
   const projectLightboxImage = projectLightbox.querySelector(".project-lightbox-image");
   const projectLightboxClose = projectLightbox.querySelector(".project-lightbox-close");
+  let lightboxReturnScrollY = 0;
   let suppressGalleryClick = false;
   document.addEventListener("click", (event) => {
-    const link = event.target.closest(".project-image-link");
+    const link = event.target.closest(".project-image-link, .certificate-image-link");
     if (!link || typeof projectLightbox.showModal !== "function") return;
     event.preventDefault();
     if (suppressGalleryClick) {
       suppressGalleryClick = false;
       return;
     }
+    lightboxReturnScrollY = window.scrollY;
     projectLightboxImage.src = link.href;
     projectLightboxImage.alt = link.querySelector("img").alt;
     projectLightbox.showModal();
-    projectLightboxClose.focus();
+    projectLightboxClose.focus({ preventScroll: true });
   });
   projectLightboxClose.addEventListener("click", () => projectLightbox.close());
   projectLightbox.addEventListener("click", (event) => {
     if (event.target === projectLightbox) projectLightbox.close();
+  });
+  projectLightbox.addEventListener("close", () => {
+    window.requestAnimationFrame(() => {
+      const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, lightboxReturnScrollY);
+      document.documentElement.style.scrollBehavior = previousScrollBehavior;
+    });
   });
 
   const projectGalleryFrame = document.querySelector(".project-gallery-frame");
