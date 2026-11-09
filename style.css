@@ -912,9 +912,13 @@ h1 span {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scrollbar-color: var(--color-accent) var(--color-soft);
-  scrollbar-width: thin;
+  scroll-behavior: auto;
+  scrollbar-width: none;
   touch-action: pan-x;
+}
+
+.project-image-gallery::-webkit-scrollbar {
+  display: none;
 }
 
 .project-image-gallery .project-image-link {

@@ -91,20 +91,56 @@
   const projectLightbox = document.getElementById("project-lightbox");
   const projectLightboxImage = projectLightbox.querySelector(".project-lightbox-image");
   const projectLightboxClose = projectLightbox.querySelector(".project-lightbox-close");
-  document.querySelectorAll(".project-image-link").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      if (typeof projectLightbox.showModal !== "function") return;
-      event.preventDefault();
-      projectLightboxImage.src = link.href;
-      projectLightboxImage.alt = link.querySelector("img").alt;
-      projectLightbox.showModal();
-      projectLightboxClose.focus();
-    });
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest(".project-image-link");
+    if (!link || typeof projectLightbox.showModal !== "function") return;
+    event.preventDefault();
+    projectLightboxImage.src = link.href;
+    projectLightboxImage.alt = link.querySelector("img").alt;
+    projectLightbox.showModal();
+    projectLightboxClose.focus();
   });
   projectLightboxClose.addEventListener("click", () => projectLightbox.close());
   projectLightbox.addEventListener("click", (event) => {
     if (event.target === projectLightbox) projectLightbox.close();
   });
+
+  const projectGallery = document.querySelector(".project-image-gallery");
+  if (projectGallery) {
+    const slides = Array.from(projectGallery.children);
+    if (slides.length > 1) {
+      const createClone = (slide) => {
+        const clone = slide.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.querySelectorAll("a, button, [tabindex]").forEach((control) => {
+          control.setAttribute("tabindex", "-1");
+        });
+        return clone;
+      };
+
+      projectGallery.prepend(createClone(slides[slides.length - 1]));
+      projectGallery.append(createClone(slides[0]));
+
+      const showFirstSlide = () => {
+        projectGallery.scrollLeft = projectGallery.clientWidth;
+      };
+      let scrollSettleTimer;
+      projectGallery.addEventListener("scroll", () => {
+        window.clearTimeout(scrollSettleTimer);
+        scrollSettleTimer = window.setTimeout(() => {
+          const slideWidth = projectGallery.clientWidth;
+          if (projectGallery.scrollLeft < slideWidth / 2) {
+            projectGallery.scrollLeft = slideWidth * slides.length;
+          } else if (projectGallery.scrollLeft > slideWidth * (slides.length + 0.5)) {
+            projectGallery.scrollLeft = slideWidth;
+          }
+        }, 120);
+      }, { passive: true });
+
+      showFirstSlide();
+      window.addEventListener("resize", showFirstSlide);
+    }
+  }
 
   const setMessageOpen = (open) => {
     messageCard.hidden = !open;
