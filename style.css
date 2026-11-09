@@ -871,7 +871,7 @@ h1 span {
 
 @keyframes certifications-scroll {
   from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(var(--marquee-distance), 0, 0); }
 }
 
 .projects-section {
@@ -912,26 +912,21 @@ h1 span {
 }
 
 .project-image-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.25rem;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--color-accent) var(--color-soft);
+  scrollbar-width: thin;
+  touch-action: pan-x;
+}
+
+.project-image-gallery .project-image-link {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
 }
 
 .project-image-gallery .project-image-link img {
   object-fit: contain;
-}
-
-.project-image-link::after {
-  position: absolute;
-  top: 0.9rem;
-  right: 0.9rem;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid rgb(255 255 255 / 85%);
-  border-radius: 50%;
-  box-shadow: 0 0 0 0.3rem rgb(255 255 255 / 18%);
-  content: "";
-  pointer-events: none;
 }
 
 .project-image-link img {
@@ -952,6 +947,15 @@ h1 span {
   flex-direction: column;
   align-items: flex-start;
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.projects-grid > .project-card:first-child .project-content {
+  padding: 1rem;
+}
+
+.projects-grid > .project-card:first-child .project-content .project-detail {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .project-content h3 {
@@ -1295,6 +1299,51 @@ h1 span {
   background: rgb(16 24 19 / 72%);
   -webkit-backdrop-filter: blur(0.25rem);
   backdrop-filter: blur(0.25rem);
+}
+
+.project-lightbox {
+  position: relative;
+  width: min(94vw, 72rem);
+  max-width: none;
+  max-height: 92dvh;
+  padding: 3.5rem 1rem 1rem;
+  overflow: visible;
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
+  background: var(--color-card);
+  box-shadow: 0 1.25rem 4rem var(--color-shadow);
+}
+
+.project-lightbox::backdrop {
+  background: rgb(16 24 19 / 82%);
+  -webkit-backdrop-filter: blur(0.25rem);
+  backdrop-filter: blur(0.25rem);
+}
+
+.project-lightbox-image {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92dvh - 4.5rem);
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.project-lightbox-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  color: var(--color-heading);
+  background: var(--color-card);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .resume-card {

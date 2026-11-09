@@ -88,6 +88,24 @@
     if (event.target === resumeDialog) resumeDialog.close();
   });
 
+  const projectLightbox = document.getElementById("project-lightbox");
+  const projectLightboxImage = projectLightbox.querySelector(".project-lightbox-image");
+  const projectLightboxClose = projectLightbox.querySelector(".project-lightbox-close");
+  document.querySelectorAll(".project-image-link").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (typeof projectLightbox.showModal !== "function") return;
+      event.preventDefault();
+      projectLightboxImage.src = link.href;
+      projectLightboxImage.alt = link.querySelector("img").alt;
+      projectLightbox.showModal();
+      projectLightboxClose.focus();
+    });
+  });
+  projectLightboxClose.addEventListener("click", () => projectLightbox.close());
+  projectLightbox.addEventListener("click", (event) => {
+    if (event.target === projectLightbox) projectLightbox.close();
+  });
+
   const setMessageOpen = (open) => {
     messageCard.hidden = !open;
     messageToggle.setAttribute("aria-expanded", String(open));
@@ -131,30 +149,40 @@
   if (track) {
     const originalCards = Array.from(track.children);
     const originalGroup = document.createElement("div");
-    const duplicateGroup = document.createElement("div");
     originalGroup.className = "certification-group";
-    duplicateGroup.className = "certification-group";
     originalCards.forEach((card) => originalGroup.append(card));
-    originalCards.forEach((card) => {
-      const clone = card.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      clone.querySelectorAll("a, button, [tabindex]").forEach((control) => {
-        control.setAttribute("tabindex", "-1");
-      });
-      duplicateGroup.append(clone);
-    });
-    track.append(originalGroup, duplicateGroup);
+    track.append(originalGroup);
 
     const setMarqueePace = () => {
-      track.style.setProperty("--marquee-duration", `${Math.max(20, track.scrollWidth / 2 / 50)}s`);
+      const groupWidth = originalGroup.getBoundingClientRect().width;
+      const marqueeWidth = track.parentElement.getBoundingClientRect().width;
+      const duplicateCount = Math.max(1, Math.ceil((marqueeWidth + groupWidth) / groupWidth) - 1);
+      const duplicateGroups = Array.from(track.querySelectorAll(":scope > .certification-group[aria-hidden='true']"));
+
+      while (duplicateGroups.length > duplicateCount) {
+        duplicateGroups.pop().remove();
+      }
+      while (duplicateGroups.length < duplicateCount) {
+        const duplicateGroup = document.createElement("div");
+        duplicateGroup.className = "certification-group";
+        duplicateGroup.setAttribute("aria-hidden", "true");
+        originalCards.forEach((card) => {
+          const clone = card.cloneNode(true);
+          clone.querySelectorAll("a, button, [tabindex]").forEach((control) => {
+            control.setAttribute("tabindex", "-1");
+          });
+          duplicateGroup.append(clone);
+        });
+        track.append(duplicateGroup);
+        duplicateGroups.push(duplicateGroup);
+      }
+
+      track.style.setProperty("--marquee-distance", `${-groupWidth}px`);
+      track.style.setProperty("--marquee-duration", `${Math.max(20, groupWidth / 50)}s`);
     };
 
     setMarqueePace();
     window.addEventListener("resize", setMarqueePace);
-    motionPreference.addEventListener("change", setMarqueePace);
-    track.querySelectorAll("img").forEach((image) => {
-      image.addEventListener("load", setMarqueePace, { once: true });
-    });
   }
 
   const year = document.getElementById("current-year");
