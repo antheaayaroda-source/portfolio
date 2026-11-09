@@ -899,6 +899,11 @@ h1 span {
   transform: translateY(-4px);
 }
 
+.project-gallery-frame {
+  position: relative;
+  min-width: 0;
+}
+
 .project-image-link {
   position: relative;
   display: block;
@@ -928,6 +933,38 @@ h1 span {
 
 .project-image-gallery .project-image-link img {
   object-fit: contain;
+}
+
+.project-gallery-next {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 1px solid rgb(255 255 255 / 75%);
+  border-radius: 50%;
+  color: #fff;
+  background: rgb(20 30 25 / 72%);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+  cursor: pointer;
+}
+
+.project-gallery-next svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.project-gallery-next:hover {
+  background: var(--color-accent);
 }
 
 .project-image-link img {

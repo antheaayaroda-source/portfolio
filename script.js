@@ -124,18 +124,18 @@
       const showFirstSlide = () => {
         projectGallery.scrollLeft = projectGallery.clientWidth;
       };
-      let scrollSettleTimer;
       projectGallery.addEventListener("scroll", () => {
-        window.clearTimeout(scrollSettleTimer);
-        scrollSettleTimer = window.setTimeout(() => {
-          const slideWidth = projectGallery.clientWidth;
-          if (projectGallery.scrollLeft < slideWidth / 2) {
-            projectGallery.scrollLeft = slideWidth * slides.length;
-          } else if (projectGallery.scrollLeft > slideWidth * (slides.length + 0.5)) {
-            projectGallery.scrollLeft = slideWidth;
-          }
-        }, 120);
+        const slideWidth = projectGallery.clientWidth;
+        if (projectGallery.scrollLeft < slideWidth / 2) {
+          projectGallery.scrollLeft = slideWidth * slides.length;
+        } else if (projectGallery.scrollLeft > slideWidth * (slides.length + 0.5)) {
+          projectGallery.scrollLeft = slideWidth;
+        }
       }, { passive: true });
+
+      document.querySelector(".project-gallery-next")?.addEventListener("click", () => {
+        projectGallery.scrollBy({ left: projectGallery.clientWidth, behavior: "smooth" });
+      });
 
       showFirstSlide();
       window.addEventListener("resize", showFirstSlide);
