@@ -765,14 +765,10 @@ h1 span {
   position: relative;
   z-index: 1;
   width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   padding-block: 0.4rem 1rem;
   scrollbar-width: none;
-  touch-action: pan-x;
-  overscroll-behavior-x: contain;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
 }
 
 .certification-marquee::-webkit-scrollbar {
@@ -788,6 +784,7 @@ h1 span {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   animation: certifications-scroll var(--marquee-duration, 42s) linear infinite;
+  animation-play-state: running;
 }
 
 .certification-group {
