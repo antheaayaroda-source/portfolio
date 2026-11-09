@@ -91,10 +91,15 @@
   const projectLightbox = document.getElementById("project-lightbox");
   const projectLightboxImage = projectLightbox.querySelector(".project-lightbox-image");
   const projectLightboxClose = projectLightbox.querySelector(".project-lightbox-close");
+  let suppressGalleryClick = false;
   document.addEventListener("click", (event) => {
     const link = event.target.closest(".project-image-link");
     if (!link || typeof projectLightbox.showModal !== "function") return;
     event.preventDefault();
+    if (suppressGalleryClick) {
+      suppressGalleryClick = false;
+      return;
+    }
     projectLightboxImage.src = link.href;
     projectLightboxImage.alt = link.querySelector("img").alt;
     projectLightbox.showModal();
@@ -105,7 +110,8 @@
     if (event.target === projectLightbox) projectLightbox.close();
   });
 
-  const projectGallery = document.querySelector(".project-image-gallery");
+  const projectGalleryFrame = document.querySelector(".project-gallery-frame");
+  const projectGallery = projectGalleryFrame?.querySelector(".project-image-gallery");
   if (projectGallery) {
     const slides = Array.from(projectGallery.children);
     if (slides.length > 1) {
@@ -121,24 +127,77 @@
       projectGallery.prepend(createClone(slides[slides.length - 1]));
       projectGallery.append(createClone(slides[0]));
 
-      const showFirstSlide = () => {
-        projectGallery.scrollLeft = projectGallery.clientWidth;
-      };
-      projectGallery.addEventListener("scroll", () => {
-        const slideWidth = projectGallery.clientWidth;
-        if (projectGallery.scrollLeft < slideWidth / 2) {
-          projectGallery.scrollLeft = slideWidth * slides.length;
-        } else if (projectGallery.scrollLeft > slideWidth * (slides.length + 0.5)) {
-          projectGallery.scrollLeft = slideWidth;
-        }
-      }, { passive: true });
+      let currentSlide = 1;
+      let pointerStartX = 0;
+      let pointerDeltaX = 0;
+      let activePointerId = null;
+      let loopResetTimer;
 
-      document.querySelector(".project-gallery-next")?.addEventListener("click", () => {
-        projectGallery.scrollBy({ left: projectGallery.clientWidth, behavior: "smooth" });
+      const setPosition = () => {
+        projectGallery.style.transform = `translate3d(${-currentSlide * projectGalleryFrame.clientWidth}px, 0, 0)`;
+      };
+
+      const moveToSlide = (slide, animate = true) => {
+        currentSlide = slide;
+        projectGallery.style.transition = animate ? "" : "none";
+        setPosition();
+        if (!animate) {
+          window.clearTimeout(loopResetTimer);
+          projectGallery.getBoundingClientRect();
+          projectGallery.style.transition = "";
+        } else if (slide === 0 || slide === slides.length + 1) {
+          const duration = getComputedStyle(projectGallery).transitionDuration.split(",")[0].trim();
+          const durationMs = duration.endsWith("ms") ? parseFloat(duration) : parseFloat(duration) * 1000;
+          loopResetTimer = window.setTimeout(resetLoopClone, durationMs + 50);
+        }
+      };
+
+      const resetLoopClone = () => {
+        window.clearTimeout(loopResetTimer);
+        if (currentSlide === 0) moveToSlide(slides.length, false);
+        if (currentSlide === slides.length + 1) moveToSlide(1, false);
+      };
+
+      projectGallery.addEventListener("transitionend", (event) => {
+        if (event.target === projectGallery && event.propertyName === "transform") resetLoopClone();
       });
 
-      showFirstSlide();
-      window.addEventListener("resize", showFirstSlide);
+      projectGalleryFrame.querySelector(".project-gallery-next")?.addEventListener("click", () => {
+        moveToSlide(currentSlide + 1);
+      });
+
+      projectGalleryFrame.addEventListener("pointerdown", (event) => {
+        if (event.target.closest(".project-gallery-next")) return;
+        activePointerId = event.pointerId;
+        pointerStartX = event.clientX;
+        pointerDeltaX = 0;
+        projectGallery.style.transition = "none";
+        projectGalleryFrame.setPointerCapture(event.pointerId);
+      });
+
+      projectGalleryFrame.addEventListener("pointermove", (event) => {
+        if (event.pointerId !== activePointerId) return;
+        pointerDeltaX = event.clientX - pointerStartX;
+        projectGallery.style.transform = `translate3d(${-currentSlide * projectGalleryFrame.clientWidth + pointerDeltaX}px, 0, 0)`;
+      });
+
+      const finishSwipe = (event) => {
+        if (event.pointerId !== activePointerId) return;
+        activePointerId = null;
+        const swipeThreshold = Math.max(18, projectGalleryFrame.clientWidth * 0.06);
+        if (Math.abs(pointerDeltaX) > swipeThreshold) {
+          suppressGalleryClick = true;
+          window.setTimeout(() => { suppressGalleryClick = false; }, 350);
+          moveToSlide(currentSlide + (pointerDeltaX < 0 ? 1 : -1));
+        } else {
+          moveToSlide(currentSlide);
+        }
+      };
+
+      projectGalleryFrame.addEventListener("pointerup", finishSwipe);
+      projectGalleryFrame.addEventListener("pointercancel", finishSwipe);
+      window.addEventListener("resize", () => moveToSlide(currentSlide, false));
+      setPosition();
     }
   }
 
